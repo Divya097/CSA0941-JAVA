@@ -1,0 +1,11 @@
+A program where students’ names, roll numbers, and grades are stored in a file.
+
+•  Write new student records, read all records, and search for a student’s details.
+•  An attendance system that logs employee check-in and check-out times in a file.
+•  Append new attendance data, read attendance logs, and calculate total working hours.
+•  Reads a server log file and extracts error messages for debugging.
+•  Read a large log file, filter error messages, and write filtered data to a new file.
+•  A program that saves and verifies user login credentials using file storage.
+•  Store usernames and hashed passwords, check login credentials, and update passwords.
+•  A simple backup system that copies a file to another location for safety.
+•  Read a file, create a duplicate backup file, and restore data if needed
