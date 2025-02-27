@@ -1,0 +1,582 @@
+1.java program to create n aray with the first element as the number and the second element as an square of the number
+
+import java.util.Scanner;
+
+public class NumberSquareArray {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the lower limit: ");
+        int lowerLimit = scanner.nextInt();
+
+        System.out.print("Enter the upper limit: ");
+        int upperLimit = scanner.nextInt();
+
+        if (lowerLimit > upperLimit) {
+            System.out.println("Invalid input: Lower limit is greater than upper limit.");
+            return;
+        }
+
+        int n = upperLimit - lowerLimit + 1;
+        int[][] array = new int[n][2];
+
+        for (int i = 0; i < n; i++) {
+            array[i][0] = lowerLimit + i;          // First element is the number
+            array[i][1] = (lowerLimit + i) * (lowerLimit + i);  // Second element is the square of the number
+        }
+
+        // Printing the array
+        for (int i = 0; i < n; i++) {
+            System.out.println("Number: " + array[i][0] + ", Square: " + array[i][1]);
+        }
+    }
+}
+
+2.program to reverse word using loop
+import java.util.Scanner;
+
+public class ReverseWord {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter a word: ");
+        String word = scanner.nextLine();
+        
+        String reversedWord = "";
+        for (int i = word.length() - 1; i >= 0; i--) {
+            reversedWord += word.charAt(i);
+        }
+
+        System.out.println("Reversed Word: " + reversedWord);
+    }
+}
+
+
+3.print the number of vowels in the given statement
+import java.util.Scanner;
+
+public class VowelCounter {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter a statement: ");
+        String statement = scanner.nextLine();
+
+        int vowelCount = 0;
+        String vowels = "AEIOUaeiou";
+
+        for (int i = 0; i < statement.length(); i++) {
+            if (vowels.indexOf(statement.charAt(i)) != -1) {
+                vowelCount++;
+            }
+        }
+
+        System.out.println("Number of vowels in the given statement: " + vowelCount);
+    }
+}
+
+
+
+4.check whether the character is present i a string or not and also print its index if found
+import java.util.Scanner;
+
+public class CharacterInString {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter a string: ");
+        String inputString = scanner.nextLine();
+
+        System.out.print("Enter a character to search for: ");
+        char searchChar = scanner.next().charAt(0);
+
+        boolean found = false;
+        for (int i = 0; i < inputString.length(); i++) {
+            if (inputString.charAt(i) == searchChar) {
+                System.out.println("Character '" + searchChar + "' found at index: " + i);
+                found = true;
+            }
+        }
+
+        if (!found) {
+            System.out.println("Character '" + searchChar + "' is not present in the string.");
+        }
+    }
+}
+
+
+5.accept string from user and remove the vowels and print the remaining
+import java.util.Scanner;
+
+public class RemoveVowels {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter a string: ");
+        String inputString = scanner.nextLine();
+
+        String result = "";
+        String vowels = "AEIOUaeiou";
+
+        for (int i = 0; i < inputString.length(); i++) {
+            if (vowels.indexOf(inputString.charAt(i)) == -1) {
+                result += inputString.charAt(i);
+            }
+        }
+
+        System.out.println("String after removing vowels: " + result);
+    }
+}
+
+
+6.read character until a* is encountered. also count number of uppercase,lowercase and numbers entered by user
+import java.util.Scanner;
+
+public class CharacterCounter {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int upperCaseCount = 0;
+        int lowerCaseCount = 0;
+        int numberCount = 0;
+
+        System.out.println("Enter characters (input ends with '*'):");
+
+        while (true) {
+            char ch = scanner.next().charAt(0);
+
+            if (ch == '*') {
+                break;
+            }
+
+            if (Character.isUpperCase(ch)) {
+                upperCaseCount++;
+            } else if (Character.isLowerCase(ch)) {
+                lowerCaseCount++;
+            } else if (Character.isDigit(ch)) {
+                numberCount++;
+            }
+        }
+
+        System.out.println("Number of uppercase letters: " + upperCaseCount);
+        System.out.println("Number of lowercase letters: " + lowerCaseCount);
+        System.out.println("Number of numbers: " + numberCount);
+    }
+}
+
+
+
+7.find the number of special characters in the given statement
+import java.util.Scanner;
+
+public class SpecialCharacterCounter {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter a statement: ");
+        String statement = scanner.nextLine();
+
+        int specialCharCount = 0;
+        String specialChars = "!@#$%^&*()-_=+[]{}|;:'\",.<>?/~`";
+
+        for (int i = 0; i < statement.length(); i++) {
+            if (specialChars.indexOf(statement.charAt(i)) != -1) {
+                specialCharCount++;
+            }
+        }
+
+        System.out.println("Number of special characters in the given statement: " + specialCharCount);
+    }
+}
+
+
+
+8.given a string s consisting of words and spaces, return the length of the last word i the string. a word is a maximal substring consisting of nonspace characters only . there will be atleast one word, consisting of only English letters and spaces
+import java.util.Scanner;
+
+public class LastWordLength {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter a string: ");
+        String inputString = scanner.nextLine();
+
+        // Trim any trailing spaces
+        inputString = inputString.trim();
+        
+        // Find the last word
+        int lastSpaceIndex = inputString.lastIndexOf(' ');
+        String lastWord = inputString.substring(lastSpaceIndex + 1);
+
+        // Print the length of the last word
+        System.out.println("Length of the last word: " + lastWord.length());
+    }
+}
+
+
+
+9.sort list of names in alphabetical order by getting user to decide whether in ascending or descending order
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Scanner;
+
+public class NameSorter {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<String> names = new ArrayList<>();
+
+        System.out.println("Enter names (type 'done' when finished):");
+        while (true) {
+            String name = scanner.nextLine();
+            if (name.equalsIgnoreCase("done")) {
+                break;
+            }
+            names.add(name);
+        }
+
+        System.out.print("Enter 'A' for ascending order or 'D' for descending order: ");
+        String order = scanner.nextLine();
+
+        if (order.equalsIgnoreCase("A")) {
+            Collections.sort(names);
+            System.out.println("Names in ascending order: " + names);
+        } else if (order.equalsIgnoreCase("D")) {
+            Collections.sort(names, Comparator.reverseOrder());
+            System.out.println("Names in descending order: " + names);
+        } else {
+            System.out.println("Invalid input. Please enter 'A' for ascending order or 'D' for descending order.");
+        }
+    }
+}
+
+
+
+10.add, retrieve and remove element from array lsit of employee details(employee name, employee id , employe salary, employee pf ,employee allowance)
+import java.util.ArrayList;
+import java.util.Scanner;
+
+class Employee {
+    String name;
+    int id;
+    double salary;
+    double pf;
+    double allowance;
+
+    public Employee(String name, int id, double salary, double pf, double allowance) {
+        this.name = name;
+        this.id = id;
+        this.salary = salary;
+        this.pf = pf;
+        this.allowance = allowance;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee [name=" + name + ", id=" + id + ", salary=" + salary + ", pf=" + pf + ", allowance=" + allowance + "]";
+    }
+}
+
+public class EmployeeManagement {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<Employee> employees = new ArrayList<>();
+
+        while (true) {
+            System.out.println("1. Add Employee");
+            System.out.println("2. Retrieve Employee");
+            System.out.println("3. Remove Employee");
+            System.out.println("4. Exit");
+            System.out.print("Choose an option: ");
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // Consume newline
+
+            switch (choice) {
+                case 1:
+                    // Add Employee
+                    System.out.print("Enter employee name: ");
+                    String name = scanner.nextLine();
+                    System.out.print("Enter employee id: ");
+                    int id = scanner.nextInt();
+                    System.out.print("Enter employee salary: ");
+                    double salary = scanner.nextDouble();
+                    System.out.print("Enter employee PF: ");
+                    double pf = scanner.nextDouble();
+                    System.out.print("Enter employee allowance: ");
+                    double allowance = scanner.nextDouble();
+                    scanner.nextLine(); // Consume newline
+
+                    Employee newEmployee = new Employee(name, id, salary, pf, allowance);
+                    employees.add(newEmployee);
+                    System.out.println("Employee added successfully!");
+                    break;
+                case 2:
+                    // Retrieve Employee
+                    System.out.print("Enter employee id to retrieve: ");
+                    int retrieveId = scanner.nextInt();
+                    scanner.nextLine(); // Consume newline
+                    boolean found = false;
+
+                    for (Employee emp : employees) {
+                        if (emp.id == retrieveId) {
+                            System.out.println("Employee found: " + emp);
+                            found = true;
+                            break;
+                        }
+                    }
+
+                    if (!found) {
+                        System.out.println("Employee not found.");
+                    }
+                    break;
+                case 3:
+                    // Remove Employee
+                    System.out.print("Enter employee id to remove: ");
+                    int removeId = scanner.nextInt();
+                    scanner.nextLine(); // Consume newline
+                    Employee toRemove = null;
+
+                    for (Employee emp : employees) {
+                        if (emp.id == removeId) {
+                            toRemove = emp;
+                            break;
+                        }
+                    }
+
+                    if (toRemove != null) {
+                        employees.remove(toRemove);
+                        System.out.println("Employee removed successfully!");
+                    } else {
+                        System.out.println("Employee not found.");
+                    }
+                    break;
+                case 4:
+                    // Exit
+                    System.out.println("Exiting...");
+                    return;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        }
+    }
+}
+
+
+11.create hash table to maintain bank details which includes account number and customer name . let account number be the key in the hashtable. implement 1. add 3 records 2. display the size of hashtable 3.clear the hashtable
+import java.util.Hashtable;
+import java.util.Scanner;
+
+public class BankDetails {
+    public static void main(String[] args) {
+        Hashtable<Integer, String> bankDetails = new Hashtable<>();
+        Scanner scanner = new Scanner(System.in);
+
+        // Adding 3 records
+        for (int i = 1; i <= 3; i++) {
+            System.out.print("Enter account number for record " + i + ": ");
+            int accountNumber = scanner.nextInt();
+            scanner.nextLine(); // Consume newline
+            System.out.print("Enter customer name for record " + i + ": ");
+            String customerName = scanner.nextLine();
+            bankDetails.put(accountNumber, customerName);
+        }
+
+        // Displaying the size of the hashtable
+        System.out.println("Size of hashtable: " + bankDetails.size());
+
+        // Clearing the hashtable
+        bankDetails.clear();
+        System.out.println("Hashtable cleared. Size of hashtable: " + bankDetails.size());
+    }
+}
+
+
+
+12.matrix multiplication
+import java.util.Scanner;
+
+public class MatrixMultiplication {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the number of rows for the first matrix: ");
+        int rows1 = scanner.nextInt();
+        System.out.print("Enter the number of columns for the first matrix (and rows for the second matrix): ");
+        int cols1 = scanner.nextInt();
+        System.out.print("Enter the number of columns for the second matrix: ");
+        int cols2 = scanner.nextInt();
+
+        int[][] matrix1 = new int[rows1][cols1];
+        int[][] matrix2 = new int[cols1][cols2];
+        int[][] result = new int[rows1][cols2];
+
+        System.out.println("Enter elements of the first matrix:");
+        for (int i = 0; i < rows1; i++) {
+            for (int j = 0; j < cols1; j++) {
+                matrix1[i][j] = scanner.nextInt();
+            }
+        }
+
+        System.out.println("Enter elements of the second matrix:");
+        for (int i = 0; i < cols1; i++) {
+            for (int j = 0; j < cols2; j++) {
+                matrix2[i][j] = scanner.nextInt();
+            }
+        }
+
+        // Matrix multiplication
+        for (int i = 0; i < rows1; i++) {
+            for (int j = 0; j < cols2; j++) {
+                for (int k = 0; k < cols1; k++) {
+                    result[i][j] += matrix1[i][k] * matrix2[k][j];
+                }
+            }
+        }
+
+        // Printing the resulting matrix
+        System.out.println("Resultant matrix after multiplication:");
+        for (int i = 0; i < rows1; i++) {
+            for (int j = 0; j < cols2; j++) {
+                System.out.print(result[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+
+
+13.m=maximum number , n=minimum number in an array, then find sum and difference of it . get array,m,n from user
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class MthMaxNMin {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the size of the array: ");
+        int size = scanner.nextInt();
+
+        int[] array = new int[size];
+
+        System.out.println("Enter the elements of the array:");
+        for (int i = 0; i < size; i++) {
+            array[i] = scanner.nextInt();
+        }
+
+        System.out.print("Enter the value of m (mth maximum): ");
+        int m = scanner.nextInt();
+
+        System.out.print("Enter the value of n (nth minimum): ");
+        int n = scanner.nextInt();
+
+        if (m > size || n > size || m <= 0 || n <= 0) {
+            System.out.println("Invalid input: m or n is out of range.");
+            return;
+        }
+
+        Arrays.sort(array);
+
+        int mthMax = array[size - m];
+        int nthMin = array[n - 1];
+
+        int sum = mthMax + nthMin;
+        int difference = mthMax - nthMin;
+
+        System.out.println(m + "th maximum number: " + mthMax);
+        System.out.println(n + "th minimum number: " + nthMin);
+        System.out.println("Sum of " + m + "th maximum and " + n + "th minimum: " + sum);
+        System.out.println("Difference of " + m + "th maximum and " + n + "th minimum: " + difference);
+    }
+}
+
+
+
+14.remove duplicate from array
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.Set;
+
+public class RemoveDuplicatesAndSort {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the size of the array: ");
+        int size = scanner.nextInt();
+
+        int[] array = new int[size];
+
+        System.out.println("Enter the elements of the array:");
+        for (int i = 0; i < size; i++) {
+            array[i] = scanner.nextInt();
+        }
+
+        // Removing duplicates using HashSet
+        Set<Integer> set = new HashSet<>();
+        for (int num : array) {
+            set.add(num);
+        }
+
+        // Converting Set back to array
+        int[] uniqueArray = new int[set.size()];
+        int index = 0;
+        for (int num : set) {
+            uniqueArray[index++] = num;
+        }
+
+        // Sorting the array after removing duplicates
+        Arrays.sort(uniqueArray);
+
+        // Printing the array after removing duplicates and sorting
+        System.out.println("Array after removing duplicates and sorting: " + Arrays.toString(uniqueArray));
+    }
+}
+
+
+15.find common element in 2 arrays of positive integer
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.Set;
+
+public class CommonElements {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the size of the first array: ");
+        int size1 = scanner.nextInt();
+        int[] array1 = new int[size1];
+        System.out.println("Enter the elements of the first array:");
+        for (int i = 0; i < size1; i++) {
+            array1[i] = scanner.nextInt();
+        }
+
+        System.out.print("Enter the size of the second array: ");
+        int size2 = scanner.nextInt();
+        int[] array2 = new int[size2];
+        System.out.println("Enter the elements of the second array:");
+        for (int i = 0; i < size2; i++) {
+            array2[i] = scanner.nextInt();
+        }
+
+        // Finding common elements using HashSet
+        Set<Integer> set1 = new HashSet<>();
+        Set<Integer> commonElements = new HashSet<>();
+        for (int num : array1) {
+            set1.add(num);
+        }
+        for (int num : array2) {
+            if (set1.contains(num)) {
+                commonElements.add(num);
+            }
+        }
+
+        // Converting Set to array for printing
+        Integer[] commonArray = commonElements.toArray(new Integer[0]);
+
+        // Printing the common elements
+        System.out.println("Common elements in the two arrays: " + Arrays.toString(commonArray));
+    }
+}
+

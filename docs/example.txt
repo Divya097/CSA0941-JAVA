@@ -1,0 +1,18 @@
+hello world!
+int read(): Reads the next byte of data from the input stream.
+
+int read(byte[] b): Reads some number of bytes from the input stream and stores them into the buffer array b.
+
+int read(byte[] b, int off, int len): Reads up to len bytes of data from the input stream into an array of bytes.
+
+long skip(long n): Skips over and discards n bytes of data from the input stream.
+
+int available(): Returns the number of bytes that can be read from the input stream without blocking.
+
+void close(): Closes the input stream and releases any system resources associated with it.
+
+void mark(int readlimit): Marks the current position in the input stream.
+
+void reset(): Repositions the stream to the position at the time the mark method was last called.
+
+boolean markSupported(): Tests if this input stream supports the mark and reset methods.

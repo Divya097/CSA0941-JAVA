@@ -1,0 +1,14 @@
+public class ReverseWord {
+    public static void main(String[] args) {
+        String word = "hello";
+        String reversedWord = "";  // Start with an empty string
+
+        // Loop through the word in reverse order
+        for (int i = word.length() - 1; i >= 0; i--) {
+            reversedWord += word.charAt(i);  // Append each character to the reversedWord
+        }
+
+        // Output the reversed word
+        System.out.println(reversedWord);
+    }
+}

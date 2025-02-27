@@ -1,0 +1,4533 @@
+1. bubble sort:
+// File name: BubbleSort.java
+
+public class BubbleSort {
+    public static void main(String[] args) {
+        int[] arr = {64, 34, 25, 12, 22, 11, 90};
+        System.out.println("Original array:");
+        printArray(arr);
+
+        bubbleSort(arr);
+        System.out.println("Sorted array:");
+        printArray(arr);
+    }
+
+    public static void bubbleSort(int[] arr) {
+        int n = arr.length;
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - 1 - i; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    // Swap arr[j] and arr[j + 1]
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
+    }
+
+    public static void printArray(int[] arr) {
+        for (int i : arr) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+    }
+}
+
+2.quick sort:
+// File name: QuickSort.java
+
+public class QuickSort {
+    public static void main(String[] args) {
+        int[] arr = {64, 34, 25, 12, 22, 11, 90};
+        System.out.println("Original array:");
+        printArray(arr);
+
+        quickSort(arr, 0, arr.length - 1);
+        System.out.println("Sorted array:");
+        printArray(arr);
+    }
+
+    public static void quickSort(int[] arr, int low, int high) {
+        if (low < high) {
+            int pi = partition(arr, low, high);
+
+            quickSort(arr, low, pi - 1);
+            quickSort(arr, pi + 1, high);
+        }
+    }
+
+    public static int partition(int[] arr, int low, int high) {
+        int pivot = arr[high];
+        int i = (low - 1);
+        for (int j = low; j < high; j++) {
+            if (arr[j] < pivot) {
+                i++;
+
+                // Swap arr[i] and arr[j]
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+
+        // Swap arr[i + 1] and arr[high] (or pivot)
+        int temp = arr[i + 1];
+        arr[i + 1] = arr[high];
+        arr[high] = temp;
+
+        return i + 1;
+    }
+
+    public static void printArray(int[] arr) {
+        for (int i : arr) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+    }
+}
+
+3. Selection sort:
+
+// File name: SelectionSort.java
+
+public class SelectionSort {
+    public static void main(String[] args) {
+        int[] arr = {64, 25, 12, 22, 11};
+        System.out.println("Original array:");
+        printArray(arr);
+
+        selectionSort(arr);
+        System.out.println("Sorted array:");
+        printArray(arr);
+    }
+
+    public static void selectionSort(int[] arr) {
+        int n = arr.length;
+
+        for (int i = 0; i < n - 1; i++) {
+            int minIdx = i;
+            for (int j = i + 1; j < n; j++) {
+                if (arr[j] < arr[minIdx]) {
+                    minIdx = j;
+                }
+            }
+            // Swap the found minimum element with the first element
+            int temp = arr[minIdx];
+            arr[minIdx] = arr[i];
+            arr[i] = temp;
+        }
+    }
+
+    public static void printArray(int[] arr) {
+        for (int i : arr) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+    }
+}
+
+4.Linear search:
+// File name: LinearSearch.java
+
+public class LinearSearch {
+    public static void main(String[] args) {
+        int[] arr = {64, 34, 25, 12, 22, 11, 90};
+        int target = 25;
+        int result = linearSearch(arr, target);
+        if (result != -1) {
+            System.out.println("Element found at index: " + result);
+        } else {
+            System.out.println("Element not found in the array");
+        }
+    }
+
+    public static int linearSearch(int[] arr, int target) {
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == target) {
+                return i;
+            }
+        }
+        return -1;
+    }
+}
+
+5. Binary search:
+
+// File name: BinarySearch.java
+
+import java.util.Arrays;
+
+public class BinarySearch {
+    public static void main(String[] args) {
+        int[] arr = {64, 34, 25, 12, 22, 11, 90};
+        Arrays.sort(arr); // Binary search requires the array to be sorted
+        int target = 25;
+        int result = binarySearch(arr, target);
+        if (result != -1) {
+            System.out.println("Element found at index: " + result);
+        } else {
+            System.out.println("Element not found in the array");
+        }
+    }
+
+    public static int binarySearch(int[] arr, int target) {
+        int low = 0;
+        int high = arr.length - 1;
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            if (arr[mid] == target) {
+                return mid;
+            }
+            if (arr[mid] < target) {
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
+        }
+        return -1;
+    }
+}
+6.Reverse an array:
+// File name: ReverseArray.java
+
+public class ReverseArray {
+    public static void main(String[] args) {
+        int[] arr = {64, 25, 12, 22, 11};
+        System.out.println("Original array:");
+        printArray(arr);
+
+        reverseArray(arr);
+        System.out.println("Reversed array:");
+        printArray(arr);
+    }
+
+    public static void reverseArray(int[] arr) {
+        int left = 0;
+        int right = arr.length - 1;
+        while (left < right) {
+            // Swap arr[left] and arr[right]
+            int temp = arr[left];
+            arr[left] = arr[right];
+            arr[right] = temp;
+            left++;
+            right--;
+        }
+    }
+
+    public static void printArray(int[] arr) {
+        for (int i : arr) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+    }
+}
+
+7.find max and min:
+
+// File name: MaxMinArray.java
+
+public class MaxMinArray {
+    public static void main(String[] args) {
+        int[] arr = {64, 25, 12, 22, 11, 90};
+        int[] result = findMaxMin(arr);
+        System.out.println("Original array:");
+        printArray(arr);
+        System.out.println("Maximum value: " + result[0]);
+        System.out.println("Minimum value: " + result[1]);
+    }
+
+    public static int[] findMaxMin(int[] arr) {
+        int max = arr[0];
+        int min = arr[0];
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] > max) {
+                max = arr[i];
+            } else if (arr[i] < min) {
+                min = arr[i];
+            }
+        }
+        return new int[]{max, min};
+    }
+
+    public static void printArray(int[] arr) {
+        for (int i : arr) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+    }
+}
+
+8.merge array:
+// File name: MergeArrays.java
+
+import java.util.Arrays;
+
+public class MergeArrays {
+    public static void main(String[] args) {
+        int[] array1 = {1, 3, 5, 7};
+        int[] array2 = {2, 4, 6, 8};
+        int[] mergedArray = mergeArrays(array1, array2);
+        
+        System.out.println("Array 1: " + Arrays.toString(array1));
+        System.out.println("Array 2: " + Arrays.toString(array2));
+        System.out.println("Merged Array: " + Arrays.toString(mergedArray));
+    }
+
+    public static int[] mergeArrays(int[] arr1, int[] arr2) {
+        int[] mergedArray = new int[arr1.length + arr2.length];
+        System.arraycopy(arr1, 0, mergedArray, 0, arr1.length);
+        System.arraycopy(arr2, 0, mergedArray, arr1.length, arr2.length);
+        return mergedArray;
+    }
+}
+
+9.remove duplicate
+
+// File name: RemoveDuplicates.java
+
+import java.util.Arrays;
+
+public class RemoveDuplicates {
+    public static void main(String[] args) {
+        int[] array = {1, 3, 5, 3, 7, 1, 5, 9};
+        int[] result = removeDuplicates(array);
+        
+        System.out.println("Original array: " + Arrays.toString(array));
+        System.out.println("Array without duplicates: " + Arrays.toString(result));
+    }
+
+    public static int[] removeDuplicates(int[] array) {
+        return Arrays.stream(array).distinct().toArray();
+    }
+}
+
+10.second largest element:
+// File name: SecondLargestElement.java
+
+public class SecondLargestElement {
+    public static void main(String[] args) {
+        int[] array = {64, 34, 25, 12, 22, 11, 90};
+        int secondLargest = findSecondLargest(array);
+        
+        if (secondLargest != Integer.MIN_VALUE) {
+            System.out.println("Second largest element: " + secondLargest);
+        } else {
+            System.out.println("Array must have at least two distinct elements");
+        }
+    }
+
+    public static int findSecondLargest(int[] arr) {
+        int firstLargest = Integer.MIN_VALUE;
+        int secondLargest = Integer.MIN_VALUE;
+
+        for (int i : arr) {
+            if (i > firstLargest) {
+                secondLargest = firstLargest;
+                firstLargest = i;
+            } else if (i > secondLargest && i != firstLargest) {
+                secondLargest = i;
+            }
+        }
+        
+        return secondLargest;
+    }
+}
+
+11.array rotation:
+// File name: ArrayRotation.java
+
+public class ArrayRotation {
+    public static void main(String[] args) {
+        int[] arr = {1, 2, 3, 4, 5, 6, 7};
+        int k = 3; // Number of positions to rotate
+        System.out.println("Original array:");
+        printArray(arr);
+
+        rotateArray(arr, k);
+        System.out.println("Array after rotation:");
+        printArray(arr);
+    }
+
+    public static void rotateArray(int[] arr, int k) {
+        int n = arr.length;
+        k = k % n; // Handle cases where k > n
+        reverseArray(arr, 0, n - 1);
+        reverseArray(arr, 0, k - 1);
+        reverseArray(arr, k, n - 1);
+    }
+
+    public static void reverseArray(int[] arr, int start, int end) {
+        while (start < end) {
+            int temp = arr[start];
+            arr[start] = arr[end];
+            arr[end] = temp;
+            start++;
+            end--;
+        }
+    }
+
+    public static void printArray(int[] arr) {
+        for (int i : arr) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+    }
+}
+
+
+12.sum of array element:
+
+// File name: SumArrayElements.java
+
+public class SumArrayElements {
+    public static void main(String[] args) {
+        int[] arr = {64, 34, 25, 12, 22, 11, 90};
+        int sum = calculateSum(arr);
+        System.out.println("Array elements: ");
+        printArray(arr);
+        System.out.println("Sum of array elements: " + sum);
+    }
+
+    public static int calculateSum(int[] arr) {
+        int sum = 0;
+        for (int i : arr) {
+            sum += i;
+        }
+        return sum;
+    }
+
+    public static void printArray(int[] arr) {
+        for (int i : arr) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+    }
+}
+
+
+13.Array is palindrome or not:
+
+// File name: ArrayPalindrome.java
+
+public class ArrayPalindrome {
+    public static void main(String[] args) {
+        int[] arr = {1, 2, 3, 2, 1};
+        boolean isPalindrome = checkPalindrome(arr);
+        System.out.println("Array elements: ");
+        printArray(arr);
+        System.out.println("Is array palindrome: " + isPalindrome);
+    }
+
+    public static boolean checkPalindrome(int[] arr) {
+        int left = 0;
+        int right = arr.length - 1;
+        
+        while (left < right) {
+            if (arr[left] != arr[right]) {
+                return false;
+            }
+            left++;
+            right--;
+        }
+        return true;
+    }
+
+    public static void printArray(int[] arr) {
+        for (int i : arr) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+    }
+}
+
+14.matrix addition:
+
+// File name: MatrixAddition.java
+
+public class MatrixAddition {
+    public static void main(String[] args) {
+        int[][] matrix1 = {
+            {1, 2, 3},
+            {4, 5, 6},
+            {7, 8, 9}
+        };
+
+        int[][] matrix2 = {
+            {9, 8, 7},
+            {6, 5, 4},
+            {3, 2, 1}
+        };
+
+        int[][] resultMatrix = addMatrices(matrix1, matrix2);
+
+        System.out.println("Matrix 1:");
+        printMatrix(matrix1);
+        System.out.println("Matrix 2:");
+        printMatrix(matrix2);
+        System.out.println("Resultant Matrix after addition:");
+        printMatrix(resultMatrix);
+    }
+
+    public static int[][] addMatrices(int[][] matrix1, int[][] matrix2) {
+        int rows = matrix1.length;
+        int cols = matrix1[0].length;
+        int[][] resultMatrix = new int[rows][cols];
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                resultMatrix[i][j] = matrix1[i][j] + matrix2[i][j];
+            }
+        }
+
+        return resultMatrix;
+    }
+
+    public static void printMatrix(int[][] matrix) {
+        for (int[] row : matrix) {
+            for (int element : row) {
+                System.out.print(element + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+
+15.Matix subtraction:
+
+// File name: MatrixSubtraction.java
+
+public class MatrixSubtraction {
+    public static void main(String[] args) {
+        int[][] matrix1 = {
+            {9, 8, 7},
+            {6, 5, 4},
+            {3, 2, 1}
+        };
+
+        int[][] matrix2 = {
+            {1, 2, 3},
+            {4, 5, 6},
+            {7, 8, 9}
+        };
+
+        int[][] resultMatrix = subtractMatrices(matrix1, matrix2);
+
+        System.out.println("Matrix 1:");
+        printMatrix(matrix1);
+        System.out.println("Matrix 2:");
+        printMatrix(matrix2);
+        System.out.println("Resultant Matrix after subtraction:");
+        printMatrix(resultMatrix);
+    }
+
+    public static int[][] subtractMatrices(int[][] matrix1, int[][] matrix2) {
+        int rows = matrix1.length;
+        int cols = matrix1[0].length;
+        int[][] resultMatrix = new int[rows][cols];
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                resultMatrix[i][j] = matrix1[i][j] - matrix2[i][j];
+            }
+        }
+
+        return resultMatrix;
+    }
+
+    public static void printMatrix(int[][] matrix) {
+        for (int[] row : matrix) {
+            for (int element : row) {
+                System.out.print(element + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+
+16.matrix multiplication:
+
+// File name: MatrixMultiplication.java
+
+public class MatrixMultiplication {
+    public static void main(String[] args) {
+        int[][] matrix1 = {
+            {1, 2, 3},
+            {4, 5, 6},
+            {7, 8, 9}
+        };
+
+        int[][] matrix2 = {
+            {9, 8, 7},
+            {6, 5, 4},
+            {3, 2, 1}
+        };
+
+        int[][] resultMatrix = multiplyMatrices(matrix1, matrix2);
+
+        System.out.println("Matrix 1:");
+        printMatrix(matrix1);
+        System.out.println("Matrix 2:");
+        printMatrix(matrix2);
+        System.out.println("Resultant Matrix after multiplication:");
+        printMatrix(resultMatrix);
+    }
+
+    public static int[][] multiplyMatrices(int[][] matrix1, int[][] matrix2) {
+        int rows1 = matrix1.length;
+        int cols1 = matrix1[0].length;
+        int cols2 = matrix2[0].length;
+        int[][] resultMatrix = new int[rows1][cols2];
+
+        for (int i = 0; i < rows1; i++) {
+            for (int j = 0; j < cols2; j++) {
+                for (int k = 0; k < cols1; k++) {
+                    resultMatrix[i][j] += matrix1[i][k] * matrix2[k][j];
+                }
+            }
+        }
+
+        return resultMatrix;
+    }
+
+    public static void printMatrix(int[][] matrix) {
+        for (int[] row : matrix) {
+            for (int element : row) {
+                System.out.print(element + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+
+
+17.matrix transpose:
+
+// File name: MatrixTranspose.java
+
+public class MatrixTranspose {
+    public static void main(String[] args) {
+        int[][] matrix = {
+            {1, 2, 3},
+            {4, 5, 6},
+            {7, 8, 9}
+        };
+
+        int[][] transposedMatrix = transposeMatrix(matrix);
+
+        System.out.println("Original Matrix:");
+        printMatrix(matrix);
+        System.out.println("Transposed Matrix:");
+        printMatrix(transposedMatrix);
+    }
+
+    public static int[][] transposeMatrix(int[][] matrix) {
+        int rows = matrix.length;
+        int cols = matrix[0].length;
+        int[][] transposedMatrix = new int[cols][rows];
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                transposedMatrix[j][i] = matrix[i][j];
+            }
+        }
+
+        return transposedMatrix;
+    }
+
+    public static void printMatrix(int[][] matrix) {
+        for (int[] row : matrix) {
+            for (int element : row) {
+                System.out.print(element + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+
+18.symmetric matrix:
+
+// File name: SymmetricMatrix.java
+
+public class SymmetricMatrix {
+    public static void main(String[] args) {
+        int[][] matrix = {
+            {1, 2, 3},
+            {2, 4, 5},
+            {3, 5, 6}
+        };
+
+        boolean isSymmetric = checkSymmetric(matrix);
+
+        System.out.println("Matrix:");
+        printMatrix(matrix);
+        System.out.println("Is the matrix symmetric: " + isSymmetric);
+    }
+
+    public static boolean checkSymmetric(int[][] matrix) {
+        int rows = matrix.length;
+        int cols = matrix[0].length;
+        
+        if (rows != cols) {
+            return false; // A symmetric matrix must be square
+        }
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                if (matrix[i][j] != matrix[j][i]) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    public static void printMatrix(int[][] matrix) {
+        for (int[] row : matrix) {
+            for (int element : row) {
+                System.out.print(element + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+
+19.diagonl sum of matrix:
+
+// File name: DiagonalSumMatrix.java
+
+public class DiagonalSumMatrix {
+    public static void main(String[] args) {
+        int[][] matrix = {
+            {1, 2, 3},
+            {4, 5, 6},
+            {7, 8, 9}
+        };
+
+        int diagonalSum = calculateDiagonalSum(matrix);
+
+        System.out.println("Matrix:");
+        printMatrix(matrix);
+        System.out.println("Sum of main diagonal elements: " + diagonalSum);
+    }
+
+    public static int calculateDiagonalSum(int[][] matrix) {
+        int sum = 0;
+        for (int i = 0; i < matrix.length; i++) {
+            sum += matrix[i][i];
+        }
+        return sum;
+    }
+
+    public static void printMatrix(int[][] matrix) {
+        for (int[] row : matrix) {
+            for (int element : row) {
+                System.out.print(element + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+
+20.identity matrix or not:
+
+// File name: IdentityMatrix.java
+
+public class IdentityMatrix {
+    public static void main(String[] args) {
+        int[][] matrix = {
+            {1, 0, 0},
+            {0, 1, 0},
+            {0, 0, 1}
+        };
+
+        boolean isIdentity = checkIdentityMatrix(matrix);
+
+        System.out.println("Matrix:");
+        printMatrix(matrix);
+        System.out.println("Is the matrix an identity matrix: " + isIdentity);
+    }
+
+    public static boolean checkIdentityMatrix(int[][] matrix) {
+        int rows = matrix.length;
+        int cols = matrix[0].length;
+
+        if (rows != cols) {
+            return false; // An identity matrix must be square
+        }
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                if (i == j && matrix[i][j] != 1) {
+                    return false;
+                } else if (i != j && matrix[i][j] != 0) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    public static void printMatrix(int[][] matrix) {
+        for (int[] row : matrix) {
+            for (int element : row) {
+                System.out.print(element + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+
+
+21.rotate matrix by 90degree:
+// File name: RotateMatrix.java
+
+public class RotateMatrix {
+    public static void main(String[] args) {
+        int[][] matrix = {
+            {1, 2, 3},
+            {4, 5, 6},
+            {7, 8, 9}
+        };
+
+        System.out.println("Original Matrix:");
+        printMatrix(matrix);
+
+        int[][] rotatedMatrix = rotateMatrixBy90Degrees(matrix);
+
+        System.out.println("Matrix rotated by 90 degrees:");
+        printMatrix(rotatedMatrix);
+    }
+
+    public static int[][] rotateMatrixBy90Degrees(int[][] matrix) {
+        int n = matrix.length;
+        int[][] rotatedMatrix = new int[n][n];
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                rotatedMatrix[j][n - 1 - i] = matrix[i][j];
+            }
+        }
+
+        return rotatedMatrix;
+    }
+
+    public static void printMatrix(int[][] matrix) {
+        for (int[] row : matrix) {
+            for (int element : row) {
+                System.out.print(element + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+
+22.spiral traversal of matrix:
+
+// File name: SpiralTraversalMatrix.java
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class SpiralTraversalMatrix {
+    public static void main(String[] args) {
+        int[][] matrix = {
+            {1, 2, 3},
+            {4, 5, 6},
+            {7, 8, 9}
+        };
+
+        List<Integer> spiralOrder = spiralOrder(matrix);
+
+        System.out.println("Matrix:");
+        printMatrix(matrix);
+        System.out.println("Spiral Order Traversal: " + spiralOrder);
+    }
+
+    public static List<Integer> spiralOrder(int[][] matrix) {
+        List<Integer> result = new ArrayList<>();
+        if (matrix == null || matrix.length == 0) {
+            return result;
+        }
+
+        int top = 0, bottom = matrix.length - 1;
+        int left = 0, right = matrix[0].length - 1;
+
+        while (top <= bottom && left <= right) {
+            for (int i = left; i <= right; i++) {
+                result.add(matrix[top][i]);
+            }
+            top++;
+
+            for (int i = top; i <= bottom; i++) {
+                result.add(matrix[i][right]);
+            }
+            right--;
+
+            if (top <= bottom) {
+                for (int i = right; i >= left; i--) {
+                    result.add(matrix[bottom][i]);
+                }
+                bottom--;
+            }
+
+            if (left <= right) {
+                for (int i = bottom; i >= top; i--) {
+                    result.add(matrix[i][left]);
+                }
+                left++;
+            }
+        }
+
+        return result;
+    }
+
+    public static void printMatrix(int[][] matrix) {
+        for (int[] row : matrix) {
+            for (int element : row) {
+                System.out.print(element + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+
+
+22.saddle point in matrix:
+
+
+// File name: SaddlePointMatrix.java
+
+public class SaddlePointMatrix {
+    public static void main(String[] args) {
+        int[][] matrix = {
+            {1, 2, 3},
+            {4, 5, 6},
+            {7, 8, 9}
+        };
+
+        findSaddlePoint(matrix);
+    }
+
+    public static void findSaddlePoint(int[][] matrix) {
+        int rows = matrix.length;
+        int cols = matrix[0].length;
+        boolean saddlePointFound = false;
+
+        for (int i = 0; i < rows; i++) {
+            int rowMin = matrix[i][0];
+            int colIndex = 0;
+
+            // Find the minimum element in the current row
+            for (int j = 1; j < cols; j++) {
+                if (matrix[i][j] < rowMin) {
+                    rowMin = matrix[i][j];
+                    colIndex = j;
+                }
+            }
+
+            // Check if the found minimum element is the maximum in its column
+            boolean isSaddlePoint = true;
+            for (int k = 0; k < rows; k++) {
+                if (matrix[k][colIndex] > rowMin) {
+                    isSaddlePoint = false;
+                    break;
+                }
+            }
+
+            if (isSaddlePoint) {
+                System.out.println("Saddle point found at (" + i + ", " + colIndex + "): " + rowMin);
+                saddlePointFound = true;
+            }
+        }
+
+        if (!saddlePointFound) {
+            System.out.println("No saddle point found in the matrix.");
+        }
+    }
+}
+
+23.Write a Java program to convert a given string to a char array.
+
+public class R192210454 {
+    public static void main(String[] args) {
+        String str = "Hello, World!";
+        // Convert the string to a char array
+        char[] charArray = str.toCharArray();
+
+        // Print the char array
+        System.out.println("The char array:");
+        for (char c : charArray) {
+            System.out.print(c + " ");
+        }
+    }
+}
+
+24. Write a Java program to trim a given string and remove leading and trailing spaces.
+public class R192210454 {
+    public static void main(String[] args) {
+        String str = "  Hello, World!  ";
+        
+        // Trim leading and trailing spaces
+        String trimmedStr = str.trim();
+        
+        // Print the original and trimmed strings
+        System.out.println("Original String: '" + str + "'");
+        System.out.println("Trimmed String: '" + trimmedStr + "'");
+    }
+}
+
+25.. Write a Java program to split a given string into an array of substrings based on a specified delimiter.
+
+public class R192210454 {
+    public static void main(String[] args) {
+        String str = "apple,banana,orange";
+        String delimiter = ","; // Specify your delimiter here
+        
+        // Split the string into an array of substrings based on the delimiter
+        String[] substrings = str.split(delimiter);
+        
+        // Print the resulting array of substrings
+        System.out.println("The substrings are:");
+        for (String substring : substrings) {
+            System.out.println(substring);
+        }
+    }
+}
+
+26. Write a Java program to replace a specified character with another character in a given string.
+
+public class R192210454 {
+    public static void main(String[] args) {
+        String str = "Hello, World!";
+        char oldChar = 'o'; // Specify the character to be replaced
+        char newChar = 'a'; // Specify the new character
+
+        // Replace the specified character with the new character
+        String modifiedStr = str.replace(oldChar, newChar);
+
+        // Print the original and modified strings
+        System.out.println("Original String: " + str);
+        System.out.println("Modified String: " + modifiedStr);
+    }
+}
+
+
+27.Write a Java program to remove a specified character from a given string.
+
+public class R192210454 {
+    public static void main(String[] args) {
+        String str = "Hello, World!";
+        char charToRemove = 'o'; // Specify the character to remove
+
+        // Remove the specified character
+        String resultStr = str.replace(charToRemove, '\0'); // Replace with null character
+        resultStr = resultStr.replace("\0", ""); // Remove null characters
+
+        // Print the original and modified strings
+        System.out.println("Original String: " + str);
+        System.out.println("String after removing '" + charToRemove + "': " + resultStr);
+    }
+}
+
+28. Write a Java program to convert a given string to uppercase.
+
+public class R192210454 {
+    public static void main(String[] args) {
+        String str = "Hello, World!";
+        
+        // Convert the string to uppercase
+        String upperStr = str.toUpperCase();
+        
+        // Print the original and uppercase strings
+        System.out.println("Original String: " + str);
+        System.out.println("Uppercase String: " + upperStr);
+    }
+}
+
+
+29.Write a Java program to find the index of a given character or substring in a given string.
+
+public class R192210454 {
+    public static void main(String[] args) {
+        String str = "Hello, World!";
+        char charToFind = 'o'; // Specify the character to find
+        String substrToFind = "World"; // Specify the substring to find
+
+        // Find the index of the character
+        int charIndex = str.indexOf(charToFind);
+
+        // Find the index of the substring
+        int substrIndex = str.indexOf(substrToFind);
+
+        // Print the results
+        System.out.println("Original String: " + str);
+        System.out.println("Index of character '" + charToFind + "': " + charIndex);
+        System.out.println("Index of substring \"" + substrToFind + "\": " + substrIndex);
+    }
+}
+
+30. Write a Java program to check if a given string ends with a specific suffix.
+
+public class R192210454 {
+    public static void main(String[] args) {
+        String str = "Hello, World!";
+        String suffix = "World!"; // Specify the suffix to check
+
+        // Check if the string ends with the specified suffix
+        boolean endsWithSuffix = str.endsWith(suffix);
+
+        // Print the result
+        System.out.println("Original String: " + str);
+        System.out.println("Does the string end with \"" + suffix + "\"? " + endsWithSuffix);
+    }
+}
+
+31.Write a Java program to compare two strings lexicographically.
+public class R192210454 {
+    public static void main(String[] args) {
+        String str1 = "apple";
+        String str2 = "banana";
+
+        // Compare the two strings lexicographically
+        int comparisonResult = str1.compareTo(str2);
+
+        // Print the result
+        if (comparisonResult < 0) {
+            System.out.println(str1 + " is lexicographically less than " + str2);
+        } else if (comparisonResult == 0) {
+            System.out.println(str1 + " is lexicographically equal to " + str2);
+        } else {
+            System.out.println(str1 + " is lexicographically greater than " + str2);
+        }
+    }
+}
+
+32. Write a Java program to create a substring from a given string.
+
+public class R192210454 {
+    public static void main(String[] args) {
+        String str = "Hello, World!";
+        int startIndex = 7; // Specify the starting index for the substring
+        int endIndex = 12; // Specify the ending index for the substring
+
+        // Create the substring
+        String substring = str.substring(startIndex, endIndex);
+
+        // Print the original string and the substring
+        System.out.println("Original String: " + str);
+        System.out.println("Substring: " + substring);
+    }
+}
+
+33.Write a Java program to find the most frequent word in a given string.
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class R192210454 {
+    public static void main(String[] args) {
+        String text = "Write a Java program to find the most frequent word in a given string. Find the most frequent word in the string.";
+
+        Map.Entry<String, Integer> result = findMostFrequentWord(text);
+        System.out.println("The most frequent word is: " + result.getKey() + " with a count of: " + result.getValue());
+    }
+
+    public static Map.Entry<String, Integer> findMostFrequentWord(String text) {
+        String[] words = text.toLowerCase().split("\\W+");
+        Map<String, Integer> wordCount = new HashMap<>();
+
+        for (String word : words) {
+            wordCount.put(word, wordCount.getOrDefault(word, 0) + 1);
+        }
+
+        Map.Entry<String, Integer> mostFrequentWord = null;
+        int maxCount = 0;
+        for (Map.Entry<String, Integer> entry : wordCount.entrySet()) {
+            if (entry.getValue() > maxCount) {
+                mostFrequentWord = entry;
+                maxCount = entry.getValue();
+            }
+        }
+
+        return mostFrequentWord;
+    }
+}
+
+34. Write a Java program to find the first non-repeated character in a given string.
+
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+public class R192210454 {
+    public static void main(String[] args) {
+        String str = "swiss";
+
+        // Create a LinkedHashMap to store character frequencies
+        Map<Character, Integer> charCountMap = new LinkedHashMap<>();
+
+        // Count the frequency of each character
+        for (int i = 0; i < str.length(); i++) {
+            char c = str.charAt(i);
+            charCountMap.put(c, charCountMap.getOrDefault(c, 0) + 1);
+        }
+
+        // Find the first non-repeated character
+        char firstNonRepeatedChar = '\0';
+        for (Map.Entry<Character, Integer> entry : charCountMap.entrySet()) {
+            if (entry.getValue() == 1) {
+                firstNonRepeatedChar = entry.getKey();
+                break;
+            }
+        }
+
+        // Print the result
+        if (firstNonRepeatedChar != '\0') {
+            System.out.println("The first non-repeated character is: " + firstNonRepeatedChar);
+        } else {
+            System.out.println("No non-repeated character found.");
+        }
+    }
+}
+
+35.Write a Java program to concatenate two given strings.
+
+public class R192210454 {
+    public static void main(String[] args) {
+        String str1 = "Hello, ";
+        String str2 = "World!";
+
+        // Concatenate the two strings
+        String concatenatedStr = str1 + str2;
+
+        // Print the original strings and the concatenated string
+        System.out.println("First String: " + str1);
+        System.out.println("Second String: " + str2);
+        System.out.println("Concatenated String: " + concatenatedStr);
+    }
+}
+
+36.Write a Java program to reverse a given string.
+public class R192210454{
+  public static void main(String[] args){
+    String str="Hello World!";
+    String revstr=new StringBuilder(str).reverse().toString();
+    System.out.println("Original string:"+str);
+    System.out.println("Reversed string:"+revstr);
+  }
+  
+}
+
+37.Write a Java program to remove all white spaces from a given string.
+
+public class R192210454 {
+    public static void main(String[] args) {
+        String inputString = "This is an example string with white spaces.";
+        String stringWithoutSpaces = removeWhiteSpaces(inputString);
+        System.out.println("Original string: " + inputString);
+        System.out.println("String without white spaces: " + stringWithoutSpaces);
+    }
+
+    public static String removeWhiteSpaces(String str) {
+        return str.replaceAll("\\s+", "");
+    }
+}
+
+38.Write a Java program to convert a given string to lowercase.
+public class R192210454 {
+    public static void main(String[] args) {
+        String str = "Hello, World!";
+        
+        // Convert the string to uppercase
+        String lowerStr = str.toLowerCase();
+        
+        // Print the original and uppercase strings
+        System.out.println("Original String: " + str);
+        System.out.println("Lowercase String: " + lowerStr);
+    }
+}
+
+39.Write a Java program to find the length of the longest substring without repeating characters in a given string.
+import java.util.HashSet;
+import java.util.Set;
+
+public class R192210454 {
+    public static void main(String[] args) {
+        String inputString = "abcabcbb";
+        int lengthOfLongestSubstring = lengthOfLongestSubstring(inputString);
+        System.out.println("Input string: " + inputString);
+        System.out.println("Length of longest substring without repeating characters: " + lengthOfLongestSubstring);
+    }
+
+    public static int lengthOfLongestSubstring(String s) {
+        int n = s.length();
+        Set<Character> set = new HashSet<>();
+        int ans = 0, i = 0, j = 0;
+        while (i < n && j < n) {
+            if (!set.contains(s.charAt(j))) {
+                set.add(s.charAt(j++));
+                ans = Math.max(ans, j - i);
+            } else {
+                set.remove(s.charAt(i++));
+            }
+        }
+        return ans;
+    }
+}
+
+40.Write a Java program to check if a given string contains only digits.
+public class R192210454 {
+    public static void main(String[] args) {
+        String inputString = "123456";
+        boolean containsOnlyDigits = containsOnlyDigits(inputString);
+        System.out.println("Input string: " + inputString);
+        System.out.println("Contains only digits: " + containsOnlyDigits);
+    }
+
+    public static boolean containsOnlyDigits(String str) {
+        return str.matches("\\d+");
+    }
+}
+
+41. Write a Java program to count the number of occurrences of a given character in a string.
+
+public class R192210454 {
+    public static void main(String[] args) {
+        String inputString = "example string";
+        char targetChar = 'e';
+        int count = countOccurrences(inputString, targetChar);
+        System.out.println("Input string: " + inputString);
+        System.out.println("Character to count: " + targetChar);
+        System.out.println("Number of occurrences: " + count);
+    }
+
+    public static int countOccurrences(String str, char ch) {
+        int count = 0;
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == ch) {
+                count++;
+            }
+        }
+        return count;
+    }
+}
+
+42.Write a Java program to check if a given string is a palindrome or not.
+public class R192210454 {
+    public static void main(String[] args) {
+        String inputString = "racecar";
+        boolean isPalindrome = checkPalindrome(inputString);
+        System.out.println("Input string: " + inputString);
+        System.out.println("Is palindrome: " + isPalindrome);
+    }
+
+    public static boolean checkPalindrome(String str) {
+        int left = 0;
+        int right = str.length() - 1;
+
+        while (left < right) {
+            if (str.charAt(left) != str.charAt(right)) {
+                return false;
+            }
+            left++;
+            right--;
+        }
+        return true;
+    }
+}
+
+43. Write a Java program to create a class called Student with a constructor that takes in a name, ID number, and a list of grades, and methods to calculate and return the student's average grade and letter grade.
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class R192210454 {
+    public static void main(String[] args) {
+        // Create a list of grades
+        List<Double> grades = new ArrayList<>();
+        grades.add(95.0);
+        grades.add(90.5);
+        grades.add(87.0);
+        grades.add(92.0);
+        grades.add(88.5);
+
+        // Create a Student object
+        Student student = new Student("John Doe", 12345, grades);
+
+        // Print the student's average grade
+        System.out.println("Average Grade: " + student.calculateAverageGrade());
+
+        // Print the student's letter grade
+        System.out.println("Letter Grade: " + student.getLetterGrade());
+    }
+}
+
+// Student class
+class Student {
+    private String name;
+    private int idNumber;
+    private List<Double> grades;
+
+    // Constructor
+    public Student(String name, int idNumber, List<Double> grades) {
+        this.name = name;
+        this.idNumber = idNumber;
+        this.grades = grades;
+    }
+
+    // Method to calculate the average grade
+    public double calculateAverageGrade() {
+        double sum = 0;
+        for (double grade : grades) {
+            sum += grade;
+        }
+        return sum / grades.size();
+    }
+
+    // Method to return the letter grade
+    public String getLetterGrade() {
+        double average = calculateAverageGrade();
+        if (average >= 90) {
+            return "A";
+        } else if (average >= 80) {
+            return "B";
+        } else if (average >= 70) {
+            return "C";
+        } else if (average >= 60) {
+            return "D";
+        } else {
+            return "F";
+        }
+    }
+}
+
+
+50. Write a Java program to create a class called Car with a constructor that takes in the make, model, and year of the car, and a method to print out the car's make, model, and year.
+
+public class R192210454 {
+    public static void main(String[] args) {
+        // Create a Car object
+        Car car = new Car("Toyota", "Corolla", 2020);
+
+        // Print the car's details
+        car.printCarDetails();
+    }
+}
+
+// Car class
+class Car {
+    private String make;
+    private String model;
+    private int year;
+
+    // Constructor
+    public Car(String make, String model, int year) {
+        this.make = make;
+        this.model = model;
+        this.year = year;
+    }
+
+    // Method to print the car's details
+    public void printCarDetails() {
+        System.out.println("Make: " + make);
+        System.out.println("Model: " + model);
+        System.out.println("Year: " + year);
+    }
+}
+
+49. Write a Java program to create a class called BankAccount with a constructor that takes in an account number and an initial balance, and methods to deposit and withdraw money from the account.
+
+public class R192210454 {
+    public static void main(String[] args) {
+        // Create a BankAccount object
+        BankAccount account = new BankAccount(123456, 1000.0);
+
+        // Deposit money into the account
+        account.deposit(5000.0);
+        System.out.println("Balance after deposit: " + account.getBalance());
+
+        // Withdraw money from the account
+        account.withdraw(200.0);
+        System.out.println("Balance after withdrawal: " + account.getBalance());
+
+        // Try to withdraw more money than the balance
+        account.withdraw(2000.0);
+    }
+}
+
+// BankAccount class
+class BankAccount {
+    private int accountNumber;
+    private double balance;
+
+    // Constructor
+    public BankAccount(int accountNumber, double initialBalance) {
+        this.accountNumber = accountNumber;
+        this.balance = initialBalance;
+    }
+
+    // Method to deposit money into the account
+    public void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+            System.out.println("Deposited: " + amount);
+        } else {
+            System.out.println("Invalid deposit amount.");
+        }
+    }
+
+    // Method to withdraw money from the account
+    public void withdraw(double amount) {
+        if (amount > 0 && amount <= balance) {
+            balance -= amount;
+            System.out.println("Withdrawn: " + amount);
+        } else {
+            System.out.println("Invalid withdrawal amount or insufficient balance.");
+        }
+    }
+
+    // Method to get the current balance
+    public double getBalance() {
+        return balance;
+    }
+}
+
+
+48. Write a Java program to create a class called Rectangle with a constructor that takes in the length and width of the rectangle, and a method to calculate and return the area of the rectangle.
+
+public class R192210454 {
+    public static void main(String[] args) {
+        // Create a Rectangle object
+        Rectangle rectangle = new Rectangle(5.0, 3.0);
+
+        // Calculate and print the area of the rectangle
+        double area = rectangle.calculateArea();
+        System.out.println("The area of the rectangle is: " + area);
+    }
+}
+
+// Rectangle class
+class Rectangle {
+    private double length;
+    private double width;
+
+    // Constructor
+    public Rectangle(double length, double width) {
+        this.length = length;
+        this.width = width;
+    }
+
+    // Method to calculate and return the area of the rectangle
+    public double calculateArea() {
+        return length * width;
+    }
+}
+
+
+47. Write a Java program to create a class called Person with a constructor that takes in a name and age, and a method to print out the person's name and age.
+
+public class R192210454 {
+    public static void main(String[] args) {
+        // Create a Person object
+        Person person = new Person("Alice", 30);
+
+        // Print the person's details
+        person.printPersonDetails();
+    }
+}
+
+// Person class
+class Person {
+    private String name;
+    private int age;
+
+    // Constructor
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    // Method to print the person's details
+    public void printPersonDetails() {
+        System.out.println("Name: " + name);
+        System.out.println("Age: " + age);
+    }
+}
+
+46. Write a Java program to demonstrate method overriding with a simple calculator. Create a parent class called Calculator with methods such as add(), subtract(), multiply(), and divide(). Then, create a child class called ScientificCalculator that overrides the multiply() method to perform a more complex calculation.
+
+class Calculator {
+    // Method for addition
+    public double add(double a, double b) {
+        return a + b;
+    }
+    
+    // Method for subtraction
+    public double subtract(double a, double b) {
+        return a - b;
+    }
+    
+    // Method for multiplication
+    public double multiply(double a, double b) {
+        return a * b;
+    }
+    
+    // Method for division
+    public double divide(double a, double b) {
+        if (b != 0) {
+            return a / b;
+        } else {
+            System.out.println("Division by zero is not allowed.");
+            return Double.NaN; // Return NaN if division by zero
+        }
+    }
+}
+
+// Child class: ScientificCalculator
+class ScientificCalculator extends Calculator {
+    // Override the multiply method to perform a more complex calculation
+    //Override
+    public double multiply(double a, double b) {
+        // Example of a more complex multiplication calculation
+        return a * b + (a * 0.1) + (b * 0.1); // Add 10% of both numbers to the result
+    }
+}
+
+public class R192210454 {
+    public static void main(String[] args) {
+        Calculator calc = new Calculator();
+        ScientificCalculator scCalc = new ScientificCalculator();
+        
+        // Using Calculator methods
+        System.out.println("Calculator Add: " + calc.add(5, 3));
+        System.out.println("Calculator Subtract: " + calc.subtract(5, 3));
+        System.out.println("Calculator Multiply: " + calc.multiply(5, 3));
+        System.out.println("Calculator Divide: " + calc.divide(5, 3));
+        
+        // Using ScientificCalculator overridden method
+        System.out.println("ScientificCalculator Multiply: " + scCalc.multiply(5, 3));
+    }
+}
+
+45. Write a Java program to demonstrate method overloading with variable arguments. Create a method called sum() that takes in a variable number of integers and returns their sum. Then, create an overloaded version of the sum() method that takes in a variable number of doubles and returns their sum.
+
+public class R192210454 {
+    // Method to sum a variable number of integers
+    public static int sum(int... numbers) {
+        int total = 0;
+        for (int num : numbers) {
+            total += num;
+        }
+        return total;
+    }
+
+    // Overloaded method to sum a variable number of doubles
+    public static double sum(double... numbers) {
+        double total = 0.0;
+        for (double num : numbers) {
+            total += num;
+        }
+        return total;
+    }
+
+    public static void main(String[] args) {
+        // Testing sum methods with integers
+        System.out.println("Sum of integers: " + sum(1, 2, 3, 4, 5));
+        
+        // Testing sum methods with doubles
+        System.out.println("Sum of doubles: " + sum(1.1, 2.2, 3.3, 4.4, 5.5));
+    }
+}
+
+44. Write a Java program to demonstrate polymorphism with abstract classes. Create an abstract class called Animal with abstract methods such as eat() and sleep(). Then, create child classes such as Dog and Cat that inherit from the Animal class and implement their own versions of the eat() and sleep() methods.
+
+abstract class Animal {
+    // Abstract method for eating
+    public abstract void eat();
+    
+    // Abstract method for sleeping
+    public abstract void sleep();
+}
+
+// Child class: Dog
+class Dog extends Animal {
+    // Implement the eat method
+    //@Override
+    public void eat() {
+        System.out.println("Dog is eating.");
+    }
+    
+    // Implement the sleep method
+    //@Override
+    public void sleep() {
+        System.out.println("Dog is sleeping.");
+    }
+}
+
+// Child class: Cat
+class Cat extends Animal {
+    // Implement the eat method
+    //@Override
+    public void eat() {
+        System.out.println("Cat is eating.");
+    }
+    
+    // Implement the sleep method
+    //@Override
+    public void sleep() {
+        System.out.println("Cat is sleeping.");
+    }
+}
+
+public class R192210454 {
+    public static void main(String[] args) {
+        Animal myDog = new Dog();
+        Animal myCat = new Cat();
+        
+        // Using the eat and sleep methods
+        myDog.eat();
+        myDog.sleep();
+        myCat.eat();
+        myCat.sleep();
+    }
+}
+
+43. Write a Java program to demonstrate polymorphism with interfaces. Create an interface called Drawable with a method called draw(). Then, create classes such as Circle and Square that implement the Drawable interface and have their own unique implementations of the draw() method.
+
+interface Drawable {
+    // Method for drawing
+    void draw();
+}
+
+// Class: Circle
+class Circle implements Drawable {
+    // Implement the draw method
+    public void draw() {
+        System.out.println("Drawing a circle.");
+    }
+}
+
+// Class: Square
+class Square implements Drawable {
+    // Implement the draw method
+    public void draw() {
+        System.out.println("Drawing a square.");
+    }
+}
+
+public class R192210454 {
+    public static void main(String[] args) {
+        Drawable myCircle = new Circle();
+        Drawable mySquare = new Square();
+        
+        // Using the draw method
+        myCircle.draw();
+        mySquare.draw();
+    }
+}
+
+
+42. Write a Java program to implement a basic shape hierarchy using polymorphism. Create a parent class called Shape with attributes such as area and perimeter. Then, create child classes such as Circle and Rectangle that inherit from the Shape class and have their own unique methods for calculating area and perimeter.
+
+abstract class Shape {
+    // Attributes for area and perimeter
+    protected double area;
+    protected double perimeter;
+    
+    // Abstract methods for calculating area and perimeter
+    public abstract void calculateArea();
+    public abstract void calculatePerimeter();
+    
+    // Method to display area and perimeter
+    public void display() {
+        System.out.println("Area: " + area);
+        System.out.println("Perimeter: " + perimeter);
+    }
+}
+
+// Child class: Circle
+class Circle extends Shape {
+    private double radius;
+    
+    // Constructor
+    public Circle(double radius) {
+        this.radius = radius;
+    }
+    
+    // Override calculateArea method
+    //@Override
+    public void calculateArea() {
+        area = Math.PI * radius * radius;
+    }
+    
+    // Override calculatePerimeter method
+    //@Override
+    public void calculatePerimeter() {
+        perimeter = 2 * Math.PI * radius;
+    }
+}
+
+// Child class: Rectangle
+class Rectangle extends Shape {
+    private double length;
+    private double width;
+    
+    // Constructor
+    public Rectangle(double length, double width) {
+        this.length = length;
+        this.width = width;
+    }
+    
+    // Implement calculateArea method
+    public void calculateArea() {
+        area = length * width;
+    }
+    
+    // Implement calculatePerimeter method
+    public void calculatePerimeter() {
+        perimeter = 2 * (length + width);
+    }
+}
+
+public class R192210454 {
+    public static void main(String[] args) {
+        Shape circle = new Circle(5);
+        Shape rectangle = new Rectangle(4, 6);
+        
+        // Calculate and display area and perimeter for Circle
+        circle.calculateArea();
+        circle.calculatePerimeter();
+        System.out.println("Circle:");
+        circle.display();
+        
+        // Calculate and display area and perimeter for Rectangle
+        rectangle.calculateArea();
+        rectangle.calculatePerimeter();
+        System.out.println("Rectangle:");
+        rectangle.display();
+    }
+}
+
+41. Write a Java program to implement a basic car rental system using inheritance. Create a parent class called Vehicle with attributes such as make and model. Then, create child classes such as Sedan and SUV that inherit from the Vehicle class and have their own unique attributes and methods for renting and returning cars.
+
+class Vehicle {
+    protected String make;
+    protected String model;
+    
+    // Constructor
+    public Vehicle(String make, String model) {
+        this.make = make;
+        this.model = model;
+    }
+    
+    // Method to display vehicle details
+    public void displayDetails() {
+        System.out.println("Make: " + make + ", Model: " + model);
+    }
+    
+    // Method to rent the vehicle
+    public void rent() {
+        System.out.println("Renting vehicle: " + make + " " + model);
+    }
+    
+    // Method to return the vehicle
+    public void returnVehicle() {
+        System.out.println("Returning vehicle: " + make + " " + model);
+    }
+}
+
+// Child class: Sedan
+class Sedan extends Vehicle {
+    private boolean hasSunroof;
+    
+    // Constructor
+    public Sedan(String make, String model, boolean hasSunroof) {
+        super(make, model);
+        this.hasSunroof = hasSunroof;
+    }
+    
+    // Method to display sedan details
+    public void displaySedanDetails() {
+        displayDetails();
+        System.out.println("Sunroof: " + (hasSunroof ? "Yes" : "No"));
+    }
+    
+    // Method to rent the sedan
+    public void rentSedan() {
+        rent();
+        System.out.println("Enjoy your ride in the sedan with " + (hasSunroof ? "a sunroof." : "no sunroof."));
+    }
+    
+    // Method to return the sedan
+    public void returnSedan() {
+        returnVehicle();
+        System.out.println("Thank you for returning the sedan.");
+    }
+}
+
+// Child class: SUV
+class SUV extends Vehicle {
+    private boolean isFourWheelDrive;
+    
+    // Constructor
+    public SUV(String make, String model, boolean isFourWheelDrive) {
+        super(make, model);
+        this.isFourWheelDrive = isFourWheelDrive;
+    }
+    
+    // Method to display SUV details
+    public void displaySUVDetails() {
+        displayDetails();
+        System.out.println("Four-Wheel Drive: " + (isFourWheelDrive ? "Yes" : "No"));
+    }
+    
+    // Method to rent the SUV
+    public void rentSUV() {
+        rent();
+        System.out.println("Enjoy your ride in the SUV with " + (isFourWheelDrive ? "four-wheel drive." : "two-wheel drive."));
+    }
+    
+    // Method to return the SUV
+    public void returnSUV() {
+        returnVehicle();
+        System.out.println("Thank you for returning the SUV.");
+    }
+}
+
+public class R192210454 {
+    public static void main(String[] args) {
+        Vehicle sedan = new Sedan("Toyota", "Camry", true);
+        Vehicle suv = new SUV("Ford", "Explorer", true);
+        
+        // Display details, rent, and return the sedan
+        System.out.println("Sedan:");
+        ((Sedan) sedan).displaySedanDetails();
+        ((Sedan) sedan).rentSedan();
+        ((Sedan) sedan).returnSedan();
+        
+        // Display details, rent, and return the SUV
+        System.out.println("\nSUV:");
+        ((SUV) suv).displaySUVDetails();
+        ((SUV) suv).rentSUV();
+        ((SUV) suv).returnSUV();
+    }
+}
+
+40. Write a Java program to implement a basic weather forecasting system using inheritance. Create a parent class called Forecast with attributes such as date and temperature. Then, create child classes such as SunnyForecast and RainyForecast that inherit from the Forecast class and have their own unique attributes and methods for predicting the weather.
+
+import java.time.LocalDate;
+
+// Parent class: Forecast
+class Forecast {
+    protected LocalDate date;
+    protected double temperature;
+    
+    // Constructor
+    public Forecast(LocalDate date, double temperature) {
+        this.date = date;
+        this.temperature = temperature;
+    }
+    
+    // Method to display forecast details
+    public void displayForecast() {
+        System.out.println("Date: " + date);
+        System.out.println("Temperature: " + temperature + "°C");
+    }
+}
+
+// Child class: SunnyForecast
+class SunnyForecast extends Forecast {
+    private double uvIndex;
+    
+    // Constructor
+    public SunnyForecast(LocalDate date, double temperature, double uvIndex) {
+        super(date, temperature);
+        this.uvIndex = uvIndex;
+    }
+    
+    // Method to display sunny forecast details
+    public void displaySunnyForecast() {
+        displayForecast();
+        System.out.println("UV Index: " + uvIndex);
+    }
+    
+    // Method to predict sunny weather
+    public void predictSunnyWeather() {
+        System.out.println("It's going to be a sunny day with a UV index of " + uvIndex + ".");
+    }
+}
+
+// Child class: RainyForecast
+class RainyForecast extends Forecast {
+    private double precipitationChance;
+    
+    // Constructor
+    public RainyForecast(LocalDate date, double temperature, double precipitationChance) {
+        super(date, temperature);
+        this.precipitationChance = precipitationChance;
+    }
+    
+    // Method to display rainy forecast details
+    public void displayRainyForecast() {
+        displayForecast();
+        System.out.println("Chance of Precipitation: " + precipitationChance + "%");
+    }
+    
+    // Method to predict rainy weather
+    public void predictRainyWeather() {
+        System.out.println("It's going to be a rainy day with a " + precipitationChance + "% chance of precipitation.");
+    }
+}
+
+public class R192210454 {
+    public static void main(String[] args) {
+        // Create a sunny forecast
+        SunnyForecast sunny = new SunnyForecast(LocalDate.of(2025, 1, 27), 30.5, 8.5);
+        System.out.println("Sunny Forecast:");
+        sunny.displaySunnyForecast();
+        sunny.predictSunnyWeather();
+        
+        // Create a rainy forecast
+        RainyForecast rainy = new RainyForecast(LocalDate.of(2025, 1, 28), 22.0, 70.0);
+        System.out.println("\nRainy Forecast:");
+        rainy.displayRainyForecast();
+        rainy.predictRainyWeather();
+    }
+}
+
+39. Write a Java program to implement a basic restaurant management system using inheritance. Create a parent class called Menu with attributes such as name and price. Then, create child classes such as Appetizer and Entree that inherit from the Menu class and have their own unique attributes and methods for ordering and serving food.
+
+
+class Menu {
+    protected String name;
+    protected double price;
+    
+    // Constructor
+    public Menu(String name, double price) {
+        this.name = name;
+        this.price = price;
+    }
+    
+    // Method to display menu item details
+    public void displayDetails() {
+        System.out.println("Name: " + name);
+        System.out.println("Price: $" + price);
+    }
+    
+    // Method to order the menu item
+    public void order() {
+        System.out.println("Ordering: " + name);
+    }
+    
+    // Method to serve the menu item
+    public void serve() {
+        System.out.println("Serving: " + name);
+    }
+}
+
+// Child class: Appetizer
+class Appetizer extends Menu {
+    private boolean isVegetarian;
+    
+    // Constructor
+    public Appetizer(String name, double price, boolean isVegetarian) {
+        super(name, price);
+        this.isVegetarian = isVegetarian;
+    }
+    
+    // Method to display appetizer details
+    public void displayAppetizerDetails() {
+        displayDetails();
+        System.out.println("Vegetarian: " + (isVegetarian ? "Yes" : "No"));
+    }
+    
+    // Method to order the appetizer
+    public void orderAppetizer() {
+        order();
+        System.out.println("Enjoy your " + (isVegetarian ? "vegetarian " : "") + "appetizer.");
+    }
+    
+    // Method to serve the appetizer
+    public void serveAppetizer() {
+        serve();
+        System.out.println("Here's your " + (isVegetarian ? "vegetarian " : "") + "appetizer.");
+    }
+}
+
+// Child class: Entree
+class Entree extends Menu {
+    private String sideDish;
+    
+    // Constructor
+    public Entree(String name, double price, String sideDish) {
+        super(name, price);
+        this.sideDish = sideDish;
+    }
+    
+    // Method to display entree details
+    public void displayEntreeDetails() {
+        displayDetails();
+        System.out.println("Side Dish: " + sideDish);
+    }
+    
+    // Method to order the entree
+    public void orderEntree() {
+        order();
+        System.out.println("Enjoy your entree with " + sideDish + ".");
+    }
+    
+    // Method to serve the entree
+    public void serveEntree() {
+        serve();
+        System.out.println("Here's your entree with " + sideDish + ".");
+    }
+}
+
+public class R192210454 {
+    public static void main(String[] args) {
+        // Create an appetizer
+        Appetizer appetizer = new Appetizer("Spring Rolls", 5.99, true);
+        System.out.println("Appetizer:");
+        appetizer.displayAppetizerDetails();
+        appetizer.orderAppetizer();
+        appetizer.serveAppetizer();
+        
+        // Create an entree
+        Entree entree = new Entree("Grilled Chicken", 12.99, "Mashed Potatoes");
+        System.out.println("\nEntree:");
+        entree.displayEntreeDetails();
+        entree.orderEntree();
+        entree.serveEntree();
+    }
+}
+
+38. Write a Java program to implement a basic game system using inheritance. Create a parent class called Game with attributes such as title and genre. Then, create child classes such as ActionGame and PuzzleGame that inherit from the Game class and have their own unique attributes and methods for playing the game.
+
+class Game {
+    protected String title;
+    protected String genre;
+    
+    // Constructor
+    public Game(String title, String genre) {
+        this.title = title;
+        this.genre = genre;
+    }
+    
+    // Method to display game details
+    public void displayDetails() {
+        System.out.println("Title: " + title);
+        System.out.println("Genre: " + genre);
+    }
+    
+    // Method to play the game
+    public void play() {
+        System.out.println("Playing the game: " + title);
+    }
+}
+
+// Child class: ActionGame
+class ActionGame extends Game {
+    private String weapon;
+    
+    // Constructor
+    public ActionGame(String title, String genre, String weapon) {
+        super(title, genre);
+        this.weapon = weapon;
+    }
+    
+    // Method to display action game details
+    public void displayActionGameDetails() {
+        displayDetails();
+        System.out.println("Weapon: " + weapon);
+    }
+    
+    // Method to play the action game
+    public void playActionGame() {
+        play();
+        System.out.println("Using weapon: " + weapon);
+    }
+}
+
+// Child class: PuzzleGame
+class PuzzleGame extends Game {
+    private int numberOfLevels;
+    
+    // Constructor
+    public PuzzleGame(String title, String genre, int numberOfLevels) {
+        super(title, genre);
+        this.numberOfLevels = numberOfLevels;
+    }
+    
+    // Method to display puzzle game details
+    public void displayPuzzleGameDetails() {
+        displayDetails();
+        System.out.println("Number of Levels: " + numberOfLevels);
+    }
+    
+    // Method to play the puzzle game
+    public void playPuzzleGame() {
+        play();
+        System.out.println("Number of Levels: " + numberOfLevels);
+    }
+}
+
+public class R192210454 {
+    public static void main(String[] args) {
+        // Create an action game
+        ActionGame actionGame = new ActionGame("Battle Royale", "Action", "Sword");
+        System.out.println("Action Game:");
+        actionGame.displayActionGameDetails();
+        actionGame.playActionGame();
+        
+        // Create a puzzle game
+        PuzzleGame puzzleGame = new PuzzleGame("Brain Teasers", "Puzzle", 50);
+        System.out.println("\nPuzzle Game:");
+        puzzleGame.displayPuzzleGameDetails();
+        puzzleGame.playPuzzleGame();
+    }
+}
+
+37. Write a Java program to implement a basic university management system using inheritance. Create a parent class called Person with attributes such as name and age. Then, create child classes such as Student and Professor that inherit from the Person class and have their own unique attributes and methods for managing coursework and teaching classes.
+
+class Person {
+    protected String name;
+    protected int age;
+    
+    // Constructor
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+    
+    // Method to display person details
+    public void displayDetails() {
+        System.out.println("Name: " + name);
+        System.out.println("Age: " + age);
+    }
+}
+
+// Child class: Student
+class Student extends Person {
+    private String major;
+    private int year;
+    
+    // Constructor
+    public Student(String name, int age, String major, int year) {
+        super(name, age);
+        this.major = major;
+        this.year = year;
+    }
+    
+    // Method to display student details
+    public void displayStudentDetails() {
+        displayDetails();
+        System.out.println("Major: " + major);
+        System.out.println("Year: " + year);
+    }
+    
+    // Method to manage coursework
+    public void manageCoursework() {
+        System.out.println(name + " is managing coursework for " + major + ".");
+    }
+}
+
+// Child class: Professor
+class Professor extends Person {
+    private String department;
+    
+    // Constructor
+    public Professor(String name, int age, String department) {
+        super(name, age);
+        this.department = department;
+    }
+    
+    // Method to display professor details
+    public void displayProfessorDetails() {
+        displayDetails();
+        System.out.println("Department: " + department);
+    }
+    
+    // Method to teach classes
+    public void teachClasses() {
+        System.out.println(name + " is teaching classes in the " + department + " department.");
+    }
+}
+
+public class R192210454 {
+    public static void main(String[] args) {
+        // Create a student
+        Student student = new Student("Alice", 20, "Computer Science", 3);
+        System.out.println("Student:");
+        student.displayStudentDetails();
+        student.manageCoursework();
+        
+        // Create a professor
+        Professor professor = new Professor("Dr. Smith", 45, "Physics");
+        System.out.println("\nProfessor:");
+        professor.displayProfessorDetails();
+        professor.teachClasses();
+    }
+}
+
+36. Write a Java program to implement a basic library management system using inheritance. Create a parent class called Item with attributes such as title and author. Then, create child classes such as Book and DVD that inherit from the Item class and have their own unique attributes and methods for borrowing and returning items.
+
+class Item {
+    protected String title;
+    protected String author;
+    
+    // Constructor
+    public Item(String title, String author) {
+        this.title = title;
+        this.author = author;
+    }
+    
+    // Method to display item details
+    public void displayDetails() {
+        System.out.println("Title: " + title);
+        System.out.println("Author: " + author);
+    }
+    
+    // Method to borrow the item
+    public void borrow() {
+        System.out.println("Borrowing item: " + title);
+    }
+    
+    // Method to return the item
+    public void returnItem() {
+        System.out.println("Returning item: " + title);
+    }
+}
+
+// Child class: Book
+class Book extends Item {
+    private int numberOfPages;
+    
+    // Constructor
+    public Book(String title, String author, int numberOfPages) {
+        super(title, author);
+        this.numberOfPages = numberOfPages;
+    }
+    
+    // Method to display book details
+    public void displayBookDetails() {
+        displayDetails();
+        System.out.println("Number of Pages: " + numberOfPages);
+    }
+    
+    // Method to borrow the book
+    public void borrowBook() {
+        borrow();
+        System.out.println("Enjoy reading the book: " + title);
+    }
+    
+    // Method to return the book
+    public void returnBook() {
+        returnItem();
+        System.out.println("Thank you for returning the book: " + title);
+    }
+}
+
+// Child class: DVD
+class DVD extends Item {
+    private double duration;
+    
+    // Constructor
+    public DVD(String title, String author, double duration) {
+        super(title, author);
+        this.duration = duration;
+    }
+    
+    // Method to display DVD details
+    public void displayDVDDetails() {
+        displayDetails();
+        System.out.println("Duration: " + duration + " hours");
+    }
+    
+    // Method to borrow the DVD
+    public void borrowDVD() {
+        borrow();
+        System.out.println("Enjoy watching the DVD: " + title);
+    }
+    
+    // Method to return the DVD
+    public void returnDVD() {
+        returnItem();
+        System.out.println("Thank you for returning the DVD: " + title);
+    }
+}
+
+public class R192210454 {
+    public static void main(String[] args) {
+        // Create a book
+        Book book = new Book("The Great Gatsby", "F. Scott Fitzgerald", 180);
+        System.out.println("Book:");
+        book.displayBookDetails();
+        book.borrowBook();
+        book.returnBook();
+        
+        // Create a DVD
+        DVD dvd = new DVD("Inception", "Christopher Nolan", 2.5);
+        System.out.println("\nDVD:");
+        dvd.displayDVDDetails();
+        dvd.borrowDVD();
+        dvd.returnDVD();
+    }
+}
+
+
+35. Write a Java program to implement a basic shape hierarchy using inheritance. Create a parent class called Shape with attributes such as color and area. Then, create child classes such as Circle, Square, and Triangle that inherit from the Shape class and have their own unique methods for calculating area and perimeter.
+
+abstract class Shape {
+    protected String color;
+    protected double area;
+    
+    // Constructor
+    public Shape(String color) {
+        this.color = color;
+    }
+    
+    // Abstract methods for calculating area and perimeter
+    public abstract void calculateArea();
+    public abstract void calculatePerimeter();
+    
+    // Method to display shape details
+    public void displayDetails() {
+        System.out.println("Color: " + color);
+        System.out.println("Area: " + area);
+    }
+}
+
+// Child class: Circle
+class Circle extends Shape {
+    private double radius;
+    
+    // Constructor
+    public Circle(String color, double radius) {
+        super(color);
+        this.radius = radius;
+    }
+    
+    // Implement calculateArea method
+    public void calculateArea() {
+        area = Math.PI * radius * radius;
+    }
+    
+    // Implement calculatePerimeter method
+    public void calculatePerimeter() {
+        double perimeter = 2 * Math.PI * radius;
+        System.out.println("Perimeter: " + perimeter);
+    }
+    
+    // Method to display circle details
+    public void displayCircleDetails() {
+        displayDetails();
+        System.out.println("Radius: " + radius);
+    }
+}
+
+// Child class: Square
+class Square extends Shape {
+    private double side;
+    
+    // Constructor
+    public Square(String color, double side) {
+        super(color);
+        this.side = side;
+    }
+    
+    // Implement calculateArea method
+    public void calculateArea() {
+        area = side * side;
+    }
+    
+    // Implement calculatePerimeter method
+    public void calculatePerimeter() {
+        double perimeter = 4 * side;
+        System.out.println("Perimeter: " + perimeter);
+    }
+    
+    // Method to display square details
+    public void displaySquareDetails() {
+        displayDetails();
+        System.out.println("Side: " + side);
+    }
+}
+
+// Child class: Triangle
+class Triangle extends Shape {
+    private double base;
+    private double height;
+    private double side1;
+    private double side2;
+    private double side3;
+    
+    // Constructor
+    public Triangle(String color, double base, double height, double side1, double side2, double side3) {
+        super(color);
+        this.base = base;
+        this.height = height;
+        this.side1 = side1;
+        this.side2 = side2;
+        this.side3 = side3;
+    }
+    
+    // Implement calculateArea method
+    public void calculateArea() {
+        area = 0.5 * base * height;
+    }
+    
+    // Implement calculatePerimeter method
+    public void calculatePerimeter() {
+        double perimeter = side1 + side2 + side3;
+        System.out.println("Perimeter: " + perimeter);
+    }
+    
+    // Method to display triangle details
+    public void displayTriangleDetails() {
+        displayDetails();
+        System.out.println("Base: " + base);
+        System.out.println("Height: " + height);
+        System.out.println("Sides: " + side1 + ", " + side2 + ", " + side3);
+    }
+}
+
+public class R192210454 {
+    public static void main(String[] args) {
+        // Create a circle
+        Circle circle = new Circle("Red", 5);
+        System.out.println("Circle:");
+        circle.calculateArea();
+        circle.calculatePerimeter();
+        circle.displayCircleDetails();
+        
+        // Create a square
+        Square square = new Square("Blue", 4);
+        System.out.println("\nSquare:");
+        square.calculateArea();
+        square.calculatePerimeter();
+        square.displaySquareDetails();
+        
+        // Create a triangle
+        Triangle triangle = new Triangle("Green", 3, 4, 3, 4, 5);
+        System.out.println("\nTriangle:");
+        triangle.calculateArea();
+        triangle.calculatePerimeter();
+        triangle.displayTriangleDetails();
+    }
+}
+
+
+34. Write a Java program to implement a basic animal classification system using inheritance. Create a parent class called Animal with attributes such as name and habitat. Then, create child classes such as Mammal, Reptile, and Bird that inherit from the Animal class and have their own unique methods for eating and reproducing.
+
+class Animal {
+    protected String name;
+    protected String habitat;
+    
+    // Constructor
+    public Animal(String name, String habitat) {
+        this.name = name;
+        this.habitat = habitat;
+    }
+    
+    // Method to display animal details
+    public void displayDetails() {
+        System.out.println("Name: " + name);
+        System.out.println("Habitat: " + habitat);
+    }
+}
+
+// Child class: Mammal
+class Mammal extends Animal {
+    private String furColor;
+    
+    // Constructor
+    public Mammal(String name, String habitat, String furColor) {
+        super(name, habitat);
+        this.furColor = furColor;
+    }
+    
+    // Method for eating
+    public void eat() {
+        System.out.println(name + " the mammal is eating.");
+    }
+    
+    // Method for reproducing
+    public void reproduce() {
+        System.out.println(name + " the mammal is giving birth.");
+    }
+    
+    // Method to display mammal details
+    public void displayMammalDetails() {
+        displayDetails();
+        System.out.println("Fur Color: " + furColor);
+    }
+}
+
+// Child class: Reptile
+class Reptile extends Animal {
+    private boolean isVenomous;
+    
+    // Constructor
+    public Reptile(String name, String habitat, boolean isVenomous) {
+        super(name, habitat);
+        this.isVenomous = isVenomous;
+    }
+    
+    // Method for eating
+    public void eat() {
+        System.out.println(name + " the reptile is eating.");
+    }
+    
+    // Method for reproducing
+    public void reproduce() {
+        System.out.println(name + " the reptile is laying eggs.");
+    }
+    
+    // Method to display reptile details
+    public void displayReptileDetails() {
+        displayDetails();
+        System.out.println("Venomous: " + (isVenomous ? "Yes" : "No"));
+    }
+}
+
+// Child class: Bird
+class Bird extends Animal {
+    private double wingspan;
+    
+    // Constructor
+    public Bird(String name, String habitat, double wingspan) {
+        super(name, habitat);
+        this.wingspan = wingspan;
+    }
+    
+    // Method for eating
+    public void eat() {
+        System.out.println(name + " the bird is eating.");
+    }
+    
+    // Method for reproducing
+    public void reproduce() {
+        System.out.println(name + " the bird is laying eggs.");
+    }
+    
+    // Method to display bird details
+    public void displayBirdDetails() {
+        displayDetails();
+        System.out.println("Wingspan: " + wingspan + " meters");
+    }
+}
+
+public class R192210454 {
+    public static void main(String[] args) {
+        // Create a mammal
+        Mammal mammal = new Mammal("Elephant", "Savannah", "Gray");
+        System.out.println("Mammal:");
+        mammal.displayMammalDetails();
+        mammal.eat();
+        mammal.reproduce();
+        
+        // Create a reptile
+        Reptile reptile = new Reptile("Cobra", "Forest", true);
+        System.out.println("\nReptile:");
+        reptile.displayReptileDetails();
+        reptile.eat();
+        reptile.reproduce();
+        
+        // Create a bird
+        Bird bird = new Bird("Eagle", "Mountains", 2.3);
+        System.out.println("\nBird:");
+        bird.displayBirdDetails();
+        bird.eat();
+        bird.reproduce();
+    }
+}
+
+33. Write a Java program to implement a basic employee management system using inheritance. Create a parent class called Employee with attributes such as name, id, and salary. Then, create child classes such as Manager and SalesPerson that inherit from the Employee class and have their own unique methods for managing teams and making sales.
+
+class Employee {
+    protected String name;
+    protected String id;
+    protected double salary;
+    
+    // Constructor
+    public Employee(String name, String id, double salary) {
+        this.name = name;
+        this.id = id;
+        this.salary = salary;
+    }
+    
+    // Method to display employee details
+    public void displayDetails() {
+        System.out.println("Name: " + name);
+        System.out.println("ID: " + id);
+        System.out.println("Salary: $" + salary);
+    }
+}
+
+// Child class: Manager
+class Manager extends Employee {
+    private int teamSize;
+    
+    // Constructor
+    public Manager(String name, String id, double salary, int teamSize) {
+        super(name, id, salary);
+        this.teamSize = teamSize;
+    }
+    
+    // Method to manage team
+    public void manageTeam() {
+        System.out.println(name + " is managing a team of " + teamSize + " employees.");
+    }
+    
+    // Method to display manager details
+    public void displayManagerDetails() {
+        displayDetails();
+        System.out.println("Team Size: " + teamSize);
+    }
+}
+
+// Child class: SalesPerson
+class SalesPerson extends Employee {
+    private double salesTarget;
+    
+    // Constructor
+    public SalesPerson(String name, String id, double salary, double salesTarget) {
+        super(name, id, salary);
+        this.salesTarget = salesTarget;
+    }
+    
+    // Method to make sales
+    public void makeSales() {
+        System.out.println(name + " is making sales with a target of $" + salesTarget);
+    }
+    
+    // Method to display salesperson details
+    public void displaySalesPersonDetails() {
+        displayDetails();
+        System.out.println("Sales Target: $" + salesTarget);
+    }
+}
+
+public class R192210454 {
+    public static void main(String[] args) {
+        // Create a manager
+        Manager manager = new Manager("Alice", "M001", 75000, 10);
+        System.out.println("Manager:");
+        manager.displayManagerDetails();
+        manager.manageTeam();
+        
+        // Create a salesperson
+        SalesPerson salesPerson = new SalesPerson("Bob", "S001", 50000, 100000);
+        System.out.println("\nSalesPerson:");
+        salesPerson.displaySalesPersonDetails();
+        salesPerson.makeSales();
+    }
+}
+
+
+32. Write a Java program to implement a basic banking system using inheritance. Create a parent class called Account with attributes such as account number, account holder name, and balance. Then, create child classes such as SavingsAccount and CheckingAccount that inherit from the Account class and have their own unique methods for withdrawing and depositing money. Sample Input: SavingsAccount Account Number: 123456789 Account Holder Name: Jane Doe Interest Rate (%): 1.5 Initial Deposit: 5000 CheckingAccount Account Number: 987654321 Account Holder Name: John Smith Overdraft Limit: 1000 Initial Deposit: 1000 Sample Output:The accounts in the system are: 1. Savings Account (123456789) - Jane Doe (Balance: $5000.00, Interest Rate: 1.5%) 2. Checking Account (987654321) - John Smith (Balance: $1000.00, Overdraft Limit: $1000.00) Please enter the number of the account you wish to perform a transaction on: 1
+
+
+import java.util.Scanner;
+
+// Parent class Account
+class Account {
+    protected String accountNumber;
+    protected String accountHolderName;
+    protected double balance;
+
+    public Account(String accountNumber, String accountHolderName, double balance) {
+        this.accountNumber = accountNumber;
+        this.accountHolderName = accountHolderName;
+        this.balance = balance;
+    }
+
+    public void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+            System.out.println("Deposited: $" + amount);
+        } else {
+            System.out.println("Invalid deposit amount.");
+        }
+    }
+
+    public void withdraw(double amount) {
+        if (amount > 0 && amount <= balance) {
+            balance -= amount;
+            System.out.println("Withdrew: $" + amount);
+        } else {
+            System.out.println("Insufficient balance or invalid withdrawal amount.");
+        }
+    }
+
+    @Override
+    public String toString() {
+        return accountHolderName + " (" + accountNumber + ") - Balance: $" + balance;
+    }
+}
+
+// SavingsAccount class inherits from Account
+class SavingsAccount extends Account {
+    private double interestRate;
+
+    public SavingsAccount(String accountNumber, String accountHolderName, double balance, double interestRate) {
+        super(accountNumber, accountHolderName, balance);
+        this.interestRate = interestRate;
+    }
+
+    public void applyInterest() {
+        balance += balance * interestRate / 100;
+        System.out.println("Interest applied: $" + (balance * interestRate / 100));
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + ", Interest Rate: " + interestRate + "%";
+    }
+}
+
+// CheckingAccount class inherits from Account
+class CheckingAccount extends Account {
+    private double overdraftLimit;
+
+    public CheckingAccount(String accountNumber, String accountHolderName, double balance, double overdraftLimit) {
+        super(accountNumber, accountHolderName, balance);
+        this.overdraftLimit = overdraftLimit;
+    }
+
+    @Override
+    public void withdraw(double amount) {
+        if (amount > 0 && balance + overdraftLimit >= amount) {
+            balance -= amount;
+            System.out.println("Withdrew: $" + amount);
+        } else {
+            System.out.println("Insufficient balance or overdraft limit exceeded.");
+        }
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + ", Overdraft Limit: $" + overdraftLimit;
+    }
+}
+
+// Main class to test the banking system
+public class R192210454 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Create accounts
+        SavingsAccount savings = new SavingsAccount("123456789", "Jane Doe", 5000.00, 1.5);
+        CheckingAccount checking = new CheckingAccount("987654321", "John Smith", 1000.00, 1000.00);
+
+        // Display available accounts
+        System.out.println("The accounts in the system are:");
+        System.out.println("1. Savings Account (" + savings.accountNumber + ") - " + savings);
+        System.out.println("2. Checking Account (" + checking.accountNumber + ") - " + checking);
+
+        // Check if input is available
+        if (scanner.hasNextInt()) {
+            System.out.print("Please enter the number of the account you wish to perform a transaction on: ");
+            int accountChoice = scanner.nextInt();
+            scanner.nextLine();  // Consume the newline character
+
+            // Choose transaction type
+            System.out.print("Please enter the transaction type (deposit/withdraw): ");
+            String transactionType = scanner.nextLine().toLowerCase();
+
+            // Process transaction
+            if (accountChoice == 1) {
+                if (transactionType.equals("deposit")) {
+                    System.out.print("Enter deposit amount: ");
+                    if (scanner.hasNextDouble()) {
+                        double amount = scanner.nextDouble();
+                        savings.deposit(amount);
+                    } else {
+                        System.out.println("Invalid deposit amount.");
+                    }
+                } else if (transactionType.equals("withdraw")) {
+                    System.out.print("Enter withdrawal amount: ");
+                    if (scanner.hasNextDouble()) {
+                        double amount = scanner.nextDouble();
+                        savings.withdraw(amount);
+                    } else {
+                        System.out.println("Invalid withdrawal amount.");
+                    }
+                }
+            } else if (accountChoice == 2) {
+                if (transactionType.equals("deposit")) {
+                    System.out.print("Enter deposit amount: ");
+                    if (scanner.hasNextDouble()) {
+                        double amount = scanner.nextDouble();
+                        checking.deposit(amount);
+                    } else {
+                        System.out.println("Invalid deposit amount.");
+                    }
+                } else if (transactionType.equals("withdraw")) {
+                    System.out.print("Enter withdrawal amount: ");
+                    if (scanner.hasNextDouble()) {
+                        double amount = scanner.nextDouble();
+                        checking.withdraw(amount);
+                    } else {
+                        System.out.println("Invalid withdrawal amount.");
+                    }
+                }
+            }
+        } else {
+            System.out.println("Invalid account number selection.");
+        }
+
+        // Apply interest for savings account
+        savings.applyInterest();
+
+        // Display updated account info
+        System.out.println("\nUpdated account information:");
+        System.out.println("1. Savings Account (" + savings.accountNumber + ") - " + savings);
+        System.out.println("2. Checking Account (" + checking.accountNumber + ") - " + checking);
+
+        scanner.close();
+    }
+}
+
+31. Write a Java program to implement insertion sort on an array of integers using loops and conditional statements.
+
+public class R192210454 {
+    // Function to sort array using insertion sort
+    public static void insertionSort(int[] array) {
+        for (int i = 1; i < array.length; i++) {
+            int key = array[i];
+            int j = i - 1;
+
+            // Move elements of array[0..i-1], that are
+            // greater than key, to one position ahead
+            // of their current position
+            while (j >= 0 && array[j] > key) {
+                array[j + 1] = array[j];
+                j = j - 1;
+            }
+            array[j + 1] = key;
+        }
+    }
+
+    // Function to print the array
+    public static void printArray(int[] array) {
+        for (int i = 0; i < array.length; i++) {
+            System.out.print(array[i] + " ");
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        int[] array = {12, 11, 13, 5, 6};
+        System.out.println("Original array:");
+        printArray(array);
+
+        insertionSort(array);
+
+        System.out.println("Sorted array:");
+        printArray(array);
+    }
+}
+
+
+30. Write a Java program to implement bubble sort on an array of integers using loops and conditional statements.
+
+
+public class R192210454 {
+    // Function to sort array using bubble sort
+    public static void bubbleSort(int[] array) {
+        int n = array.length;
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                // Swap if the element found is greater
+                // than the next element
+                if (array[j] > array[j + 1]) {
+                    int temp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
+                }
+            }
+        }
+    }
+
+    // Function to print the array
+    public static void printArray(int[] array) {
+        for (int i = 0; i < array.length; i++) {
+            System.out.print(array[i] + " ");
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        int[] array = {64, 34, 25, 12, 22, 11, 90};
+        System.out.println("Original array:");
+        printArray(array);
+
+        bubbleSort(array);
+
+        System.out.println("Sorted array:");
+        printArray(array);
+    }
+}
+
+28. Write a Java program to find the smallest element in an array of integers using loops and conditional statements.
+
+public class R192210454 {
+    public static void main(String[] args) {
+        // Example array of integers
+        int[] numbers = {34, 15, 88, 2, 56, 78, 3};
+
+        // Call the method to find the smallest element
+        int smallest = findSmallest(numbers);
+
+        // Print the smallest element
+        System.out.println("The smallest element in the array is: " + smallest);
+    }
+
+    // Method to find the smallest element in an array
+    public static int findSmallest(int[] array) {
+        // Initialize the smallest element as the first element of the array
+        int smallest = array[0];
+
+        // Iterate through the array to find the smallest element
+        for (int i = 1; i < array.length; i++) {
+            // If the current element is smaller than the smallest element, update the smallest element
+            if (array[i] < smallest) {
+                smallest = array[i];
+            }
+        }
+
+        // Return the smallest element
+        return smallest;
+    }
+}
+
+29. Write a Java program to find the second smallest element in an array of integers using loops and conditional statements.
+
+public class R192210454 {
+    public static void main(String[] args) {
+        // Example array of integers
+        int[] numbers = {34, 15, 88, 2, 56, 78, 3};
+
+        // Call the method to find the second smallest element
+        int secondSmallest = findSecondSmallest(numbers);
+
+        // Print the second smallest element
+        System.out.println("The second smallest element in the array is: " + secondSmallest);
+    }
+
+    // Method to find the second smallest element in an array
+    public static int findSecondSmallest(int[] array) {
+        // Initialize the smallest and second smallest elements
+        int smallest = Integer.MAX_VALUE;
+        int secondSmallest = Integer.MAX_VALUE;
+
+        // Iterate through the array to find the smallest and second smallest elements
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] < smallest) {
+                secondSmallest = smallest;
+                smallest = array[i];
+            } else if (array[i] < secondSmallest && array[i] != smallest) {
+                secondSmallest = array[i];
+            }
+        }
+
+        // Return the second smallest element
+        return secondSmallest;
+    }
+}
+
+26. Write a Java program to find the largest element in an array of integers using loops and conditional statements.
+
+public class R192210454 {
+    public static void main(String[] args) {
+        // Example array of integers
+        int[] numbers = {34, 15, 88, 2, 56, 78, 3};
+
+        // Call the method to find the largest element
+        int largest = findLargest(numbers);
+
+        // Print the largest element
+        System.out.println("The largest element in the array is: " + largest);
+    }
+
+    // Method to find the largest element in an array
+    public static int findLargest(int[] array) {
+        // Initialize the largest element as the first element of the array
+        int largest = array[0];
+
+        // Iterate through the array to find the largest element
+        for (int i = 1; i < array.length; i++) {
+            // If the current element is larger than the largest element, update the largest element
+            if (array[i] > largest) {
+                largest = array[i];
+            }
+        }
+
+        // Return the largest element
+        return largest;
+    }
+}
+
+
+
+27. Write a Java program to find the second largest element in an array of integers using loops and conditional statements.
+
+
+public class R192210454 {
+    public static void main(String[] args) {
+        // Example array of integers
+        int[] numbers = {34, 15, 88, 2, 56, 78, 3};
+
+        // Call the method to find the second largest element
+        int secondLargest = findSecondLargest(numbers);
+
+        // Print the second largest element
+        System.out.println("The second largest element in the array is: " + secondLargest);
+    }
+
+    // Method to find the second largest element in an array
+    public static int findSecondLargest(int[] array) {
+        // Initialize the largest and second largest elements
+        int largest = Integer.MIN_VALUE;
+        int secondLargest = Integer.MIN_VALUE;
+
+        // Iterate through the array to find the largest and second largest elements
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] > largest) {
+                secondLargest = largest;
+                largest = array[i];
+            } else if (array[i] > secondLargest && array[i] != largest) {
+                secondLargest = array[i];
+            }
+        }
+
+        // Return the second largest element
+        return secondLargest;
+    }
+}
+
+
+24. Write a Java program to print the following pattern using loops:1 22 333 4444 55555
+
+public class R192210454 {
+    public static void main(String[] args) {
+        // Number of lines in the pattern
+        int n = 5;
+
+        // Iterate through each line
+        for (int i = 1; i <= n; i++) {
+            // Print the number 'i', 'i' times
+            for (int j = 1; j <= i; j++) {
+                System.out.print(i);
+            }
+            // Move to the next line
+            System.out.println();
+        }
+    }
+}
+
+
+25. Write a Java program to check whether a given number is a perfect number or not using loops and conditional statements.
+
+public class R192210454 {
+    public static void main(String[] args) {
+        // Example number to check
+        int number = 28;
+
+        // Call the method to check if the number is a perfect number
+        boolean isPerfect = isPerfectNumber(number);
+
+        // Print the result
+        if (isPerfect) {
+            System.out.println(number + " is a perfect number.");
+        } else {
+            System.out.println(number + " is not a perfect number.");
+        }
+    }
+
+    // Method to check if a number is a perfect number
+    public static boolean isPerfectNumber(int number) {
+        // Initialize the sum of divisors
+        int sum = 0;
+
+        // Iterate through all possible divisors
+        for (int i = 1; i <= number / 2; i++) {
+            // If 'i' is a divisor, add it to the sum
+            if (number % i == 0) {
+                sum += i;
+            }
+        }
+
+        // A number is perfect if the sum of its divisors (excluding itself) is equal to the number
+        return sum == number;
+    }
+}
+
+
+22. Write a Java program to check whether a given string is a palindrome or not using loops and conditional statements.
+
+public class R192210454 {
+    public static void main(String[] args) {
+        // Example string to check
+        String str = "radar";
+
+        // Call the method to check if the string is a palindrome
+        boolean isPalindrome = isPalindrome(str);
+
+        // Print the result
+        if (isPalindrome) {
+            System.out.println(str + " is a palindrome.");
+        } else {
+            System.out.println(str + " is not a palindrome.");
+        }
+    }
+
+    // Method to check if a string is a palindrome
+    public static boolean isPalindrome(String str) {
+        // Convert the string to lowercase to make the check case-insensitive
+        str = str.toLowerCase();
+
+        // Initialize pointers to the beginning and end of the string
+        int left = 0;
+        int right = str.length() - 1;
+
+        // Iterate through the string to check if it is a palindrome
+        while (left < right) {
+            // If the characters at the left and right pointers are not the same, the string is not a palindrome
+            if (str.charAt(left) != str.charAt(right)) {
+                return false;
+            }
+            // Move the pointers towards the center
+            left++;
+            right--;
+        }
+
+        // If all characters matched, the string is a palindrome
+        return true;
+    }
+}
+
+
+23. Write a Java program to check whether a given number is an Armstrong number or not using loops and conditional statements.
+
+public class R192210454 {
+    public static void main(String[] args) {
+        // Example number to check
+        int number = 153;
+
+        // Call the method to check if the number is an Armstrong number
+        boolean isArmstrong = isArmstrongNumber(number);
+
+        // Print the result
+        if (isArmstrong) {
+            System.out.println(number + " is an Armstrong number.");
+        } else {
+            System.out.println(number + " is not an Armstrong number.");
+        }
+    }
+
+    // Method to check if a number is an Armstrong number
+    public static boolean isArmstrongNumber(int number) {
+        int originalNumber, remainder, result = 0, n = 0;
+
+        // Find the number of digits in the number
+        originalNumber = number;
+        while (originalNumber != 0) {
+            originalNumber /= 10;
+            n++;
+        }
+
+        // Calculate the sum of the nth power of each digit
+        originalNumber = number;
+        while (originalNumber != 0) {
+            remainder = originalNumber % 10;
+            result += Math.pow(remainder, n);
+            originalNumber /= 10;
+        }
+
+        // A number is an Armstrong number if the sum of its digits raised to the power of n is equal to the number itself
+        return result == number;
+    }
+}
+
+21. Write a Java program to calculate the volume of a sphere using the radius input by the user.
+
+import java.util.Scanner;
+
+public class R192210454 {
+    public static void main(String[] args) {
+        // Create a Scanner object to read input from the user
+        Scanner scanner = new Scanner(System.in);
+
+        try {
+            // Prompt the user to enter the radius
+            System.out.print("Enter the radius of the sphere: ");
+            double radius = scanner.nextDouble();
+
+            // Calculate the volume of the sphere
+            double volume = (4.0 / 3.0) * Math.PI * Math.pow(radius, 3);
+
+            // Print the result
+            System.out.println("The volume of the sphere is: " + volume);
+        } catch (Exception e) {
+            System.out.println("Invalid input. Please enter a valid number.");
+        } finally {
+            // Close the scanner
+            scanner.close();
+        }
+    }
+}
+
+19. Write a Java program to find the power of a number using loops and conditional statements.
+
+
+import java.util.Scanner;
+
+public class R192210454 {
+    public static void main(String[] args) {
+        // Create a Scanner object to read input from the user
+        Scanner scanner = new Scanner(System.in);
+
+        try {
+            // Prompt the user to enter the base number
+            System.out.print("Enter the base number: ");
+            int base = scanner.nextInt();
+
+            // Prompt the user to enter the exponent
+            System.out.print("Enter the exponent: ");
+            int exponent = scanner.nextInt();
+
+            // Calculate the power using a loop
+            int result = 1;
+            for (int i = 1; i <= exponent; i++) {
+                result *= base;
+            }
+
+            // Print the result
+            System.out.println(base + " raised to the power of " + exponent + " is: " + result);
+        } catch (Exception e) {
+            System.out.println("Invalid input. Please enter valid integers.");
+        } finally {
+            // Close the scanner
+            scanner.close();
+        }
+    }
+}
+
+
+20. Write a Java program to calculate the area of a circle using the radius input by the user.
+
+import java.util.Scanner;
+
+public class R192210454 {
+    public static void main(String[] args) {
+        // Create a Scanner object to read input from the user
+        Scanner scanner = new Scanner(System.in);
+
+        try {
+            // Prompt the user to enter the radius
+            System.out.print("Enter the radius of the circle: ");
+            double radius = scanner.nextDouble();
+
+            // Calculate the area of the circle
+            double area = Math.PI * Math.pow(radius, 2);
+
+            // Print the result
+            System.out.println("The area of the circle is: " + area);
+        } catch (Exception e) {
+            System.out.println("Invalid input. Please enter a valid number.");
+        } finally {
+            // Close the scanner
+            scanner.close();
+        }
+    }
+}
+
+18. Write a Java program to calculate the product of the digits of a given number using loops and conditional statements.
+
+import java.util.Scanner;
+
+public class R192210454 {
+    public static void main(String[] args) {
+        // Create a Scanner object to read input from the user
+        Scanner scanner = new Scanner(System.in);
+
+        try {
+            // Prompt the user to enter a number
+            System.out.print("Enter a number: ");
+            int number = scanner.nextInt();
+
+            // Call the method to calculate the product of the digits
+            int product = calculateProductOfDigits(number);
+
+            // Print the result
+            System.out.println("The product of the digits of " + number + " is: " + product);
+        } catch (Exception e) {
+            System.out.println("Invalid input. Please enter a valid integer.");
+        } finally {
+            // Close the scanner
+            scanner.close();
+        }
+    }
+
+    // Method to calculate the product of the digits of a given number
+    public static int calculateProductOfDigits(int number) {
+        int product = 1;
+
+        // Use a loop to iterate through each digit
+        while (number != 0) {
+            // Get the last digit of the number
+            int digit = number % 10;
+
+            // Multiply the digit to the product
+            product *= digit;
+
+            // Remove the last digit from the number
+            number /= 10;
+        }
+
+        // Return the product of the digits
+        return product;
+    }
+}
+
+16. Write a Java program to convert a binary number to decimal using loops and conditional statements.
+
+import java.util.Scanner;
+
+public class R192210454 {
+    public static void main(String[] args) {
+        // Create a Scanner object to read input from the user
+        Scanner scanner = new Scanner(System.in);
+
+        try {
+            // Prompt the user to enter a binary number
+            System.out.print("Enter a binary number: ");
+            String binaryStr = scanner.nextLine();
+
+            // Call the method to convert the binary number to decimal
+            int decimal = binaryToDecimal(binaryStr);
+
+            // Print the result
+            System.out.println("The decimal representation of " + binaryStr + " is: " + decimal);
+        } catch (Exception e) {
+            System.out.println("Invalid input. Please enter a valid binary number.");
+        } finally {
+            // Close the scanner
+            scanner.close();
+        }
+    }
+
+    // Method to convert a binary number to decimal
+    public static int binaryToDecimal(String binaryStr) {
+        int decimal = 0;
+        int length = binaryStr.length();
+
+        // Iterate through each digit of the binary number
+        for (int i = 0; i < length; i++) {
+            // Get the digit at the current position
+            char digit = binaryStr.charAt(length - 1 - i);
+
+            // If the digit is '1', add the corresponding power of 2 to the decimal value
+            if (digit == '1') {
+                decimal += Math.pow(2, i);
+            }
+        }
+
+        // Return the decimal value
+        return decimal;
+    }
+}
+
+17. Write a Java program to calculate the sum of the digits of a given number using loops and conditional statements.
+
+import java.util.Scanner;
+
+public class R192210454 {
+    public static void main(String[] args) {
+        // Create a Scanner object to read input from the user
+        Scanner scanner = new Scanner(System.in);
+
+        try {
+            // Prompt the user to enter a number
+            System.out.print("Enter a number: ");
+            int number = scanner.nextInt();
+
+            // Call the method to calculate the sum of the digits
+            int sum = calculateSumOfDigits(number);
+
+            // Print the result
+            System.out.println("The sum of the digits of " + number + " is: " + sum);
+        } catch (Exception e) {
+            System.out.println("Invalid input. Please enter a valid integer.");
+        } finally {
+            // Close the scanner
+            scanner.close();
+        }
+    }
+
+    // Method to calculate the sum of the digits of a given number
+    public static int calculateSumOfDigits(int number) {
+        int sum = 0;
+
+        // Use a loop to iterate through each digit
+        while (number != 0) {
+            // Get the last digit of the number
+            int digit = number % 10;
+
+            // Add the digit to the sum
+            sum += digit;
+
+            // Remove the last digit from the number
+            number /= 10;
+        }
+
+        // Return the sum of the digits
+        return sum;
+    }
+}
+
+15. Write a Java program to convert a decimal number to binary using loops and conditional statements.
+
+import java.util.Scanner;
+
+public class R192210454 {
+    public static void main(String[] args) {
+        // Create a Scanner object to read input from the user
+        Scanner scanner = new Scanner(System.in);
+
+        try {
+            // Prompt the user to enter a decimal number
+            System.out.print("Enter a decimal number: ");
+            int decimal = scanner.nextInt();
+
+            // Call the method to convert the decimal number to binary
+            String binary = decimalToBinary(decimal);
+
+            // Print the result
+            System.out.println("The binary representation of " + decimal + " is: " + binary);
+        } catch (Exception e) {
+            System.out.println("Invalid input. Please enter a valid integer.");
+        } finally {
+            // Close the scanner
+            scanner.close();
+        }
+    }
+
+    // Method to convert a decimal number to binary
+    public static String decimalToBinary(int decimal) {
+        StringBuilder binary = new StringBuilder();
+
+        // Use a loop to convert the decimal number to binary
+        while (decimal > 0) {
+            int remainder = decimal % 2;
+            binary.insert(0, remainder);
+            decimal /= 2;
+        }
+
+        // If the binary representation is empty, return "0"
+        return binary.length() == 0 ? "0" : binary.toString();
+    }
+}
+
+14. Write a Java program to find the LCM (Least Common Multiple) of two numbers using loops and conditional statements.
+
+
+
+import java.util.Scanner;
+
+public class R192210454 {
+    public static void main(String[] args) {
+        // Create a Scanner object to read input from the user
+        Scanner scanner = new Scanner(System.in);
+
+        try {
+            // Prompt the user to enter the first number
+            System.out.print("Enter the first number: ");
+            int num1 = scanner.nextInt();
+
+            // Prompt the user to enter the second number
+            System.out.print("Enter the second number: ");
+            int num2 = scanner.nextInt();
+
+            // Call the method to find the LCM
+            int lcm = findLCM(num1, num2);
+
+            // Print the result
+            System.out.println("The LCM of " + num1 + " and " + num2 + " is: " + lcm);
+        } catch (Exception e) {
+            System.out.println("Invalid input. Please enter valid integers.");
+        } finally {
+            // Close the scanner
+            scanner.close();
+        }
+    }
+
+    // Method to find the LCM of two numbers
+    public static int findLCM(int num1, int num2) {
+        // Find the maximum of the two numbers
+        int max = (num1 > num2) ? num1 : num2;
+
+        // Use a loop to find the LCM
+        while (true) {
+            if (max % num1 == 0 && max % num2 == 0) {
+                return max;
+            }
+            max++;
+        }
+    }
+}
+
+
+12. 2. Write a Java program to find the factorial of a given number using recursion.
+
+import java.util.Scanner;
+
+public class R192210454 {
+    public static void main(String[] args) {
+        // Create a Scanner object to read input from the user
+        Scanner scanner = new Scanner(System.in);
+
+        try {
+            // Prompt the user to enter a number
+            System.out.print("Enter a number: ");
+            int number = scanner.nextInt();
+
+            // Call the recursive method to find the factorial
+            int factorial = findFactorial(number);
+
+            // Print the result
+            System.out.println("The factorial of " + number + " is: " + factorial);
+        } catch (Exception e) {
+            System.out.println("Invalid input. Please enter a valid integer.");
+        } finally {
+            // Close the scanner
+            scanner.close();
+        }
+    }
+
+    // Recursive method to find the factorial of a given number
+    public static int findFactorial(int number) {
+        if (number == 0) {
+            return 1;
+        } else {
+            return number * findFactorial(number - 1);
+        }
+    }
+}
+
+
+13. Write a Java program to print the following pattern using loops:***** **** *** ** *
+public class R192210454 {
+    public static void main(String[] args) {
+        // Number of lines in the pattern
+        int n = 5;
+
+        // Iterate through each line
+        for (int i = n; i >= 1; i--) {
+            // Print '*' i times
+            for (int j = 1; j <= i; j++) {
+                System.out.print("*");
+            }
+            // Move to the next line
+            System.out.println();
+        }
+    }
+}
+
+
+11. Write a Java program to print the multiplication table of a given number using loops.
+import java.util.Scanner;
+
+public class R192210454 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        try {
+            System.out.print("Enter a number: ");
+            if (scanner.hasNextInt()) {
+                int number = scanner.nextInt();
+                for (int i = 1; i <= 10; i++) {
+                    System.out.println(number + " x " + i + " = " + (number * i));
+                }
+            } else {
+                System.out.println("Invalid input. Please enter a valid integer.");
+            }
+        } catch (Exception e) {
+            System.out.println("An error occurred: " + e.getMessage());
+        } finally {
+            scanner.close();
+        }
+    }
+}
+
+
+9. Write a Java program to check whether a given number is a prime number or not using loops and conditional statements.
+
+import java.util.Scanner;
+
+public class R192210454 {
+    public static void main(String[] args) {
+        // Create a Scanner object to read input from the user
+        Scanner scanner = new Scanner(System.in);
+
+        try {
+            // Prompt the user to enter a number 
+            System.out.print("Enter a number: ");
+            int number = scanner.nextInt();
+
+            // Check if the number is prime
+            boolean isPrime = checkPrime(number);
+
+            // Print the result
+            if (isPrime) {
+                System.out.println(number + " is a prime number.");
+            } else {
+                System.out.println(number + " is not a prime number.");
+            }
+        } catch (Exception e) {
+            System.out.println("Invalid input. Please enter a valid integer.");
+        } finally {
+            // Close the scanner
+            scanner.close();
+        }
+    }
+
+    // Method to check if a number is prime
+    public static boolean checkPrime(int number) {
+        // Prime numbers are greater than 1
+        if (number <= 1) {
+            return false;
+        }
+
+        // Check for factors other than 1 and the number itself
+        for (int i = 2; i <= Math.sqrt(number); i++) {
+            if (number % i == 0) {
+                return false;
+            }
+        }
+
+        // If no factors are found, the number is prime
+        return true;
+    }
+}
+
+
+
+10. Write a Java program to implement selection sort on an array of integers using loops and conditional statements.
+
+public class R192210454 {
+    public static void main(String[] args) {
+        // Example array of integers
+        int[] numbers = {64, 25, 12, 22, 11};
+
+        // Call the method to perform selection sort
+        selectionSort(numbers);
+
+        // Print the sorted array
+        System.out.println("Sorted array:");
+        for (int number : numbers) {
+            System.out.print(number + " ");
+        }
+    }
+
+    // Method to perform selection sort on an array
+    public static void selectionSort(int[] array) {
+        int n = array.length;
+
+        // Iterate through the array
+        for (int i = 0; i < n - 1; i++) {
+            // Find the minimum element in the unsorted part of the array
+            int minIndex = i;
+            for (int j = i + 1; j < n; j++) {
+                if (array[j] < array[minIndex]) {
+                    minIndex = j;
+                }
+            }
+
+            // Swap the found minimum element with the first element of the unsorted part
+            int temp = array[minIndex];
+            array[minIndex] = array[i];
+            array[i] = temp;
+        }
+    }
+}
+
+
+8. Write a Java program to find the GCD (Greatest Common Divisor) of two numbers using loops and conditional statements.
+
+import java.util.Scanner;
+
+public class R192210454 {
+    public static void main(String[] args) {
+        // Create a Scanner object to read input from the user
+        Scanner scanner = new Scanner(System.in);
+
+        try {
+            // Prompt the user to enter the first number
+            System.out.print("Enter the first number: ");
+            int num1 = scanner.nextInt();
+
+            // Prompt the user to enter the second number
+            System.out.print("Enter the second number: ");
+            int num2 = scanner.nextInt();
+
+            // Call the method to find the GCD
+            int gcd = findGCD(num1, num2);
+
+            // Print the result
+            System.out.println("The GCD of " + num1 + " and " + num2 + " is: " + gcd);
+        } catch (Exception e) {
+            System.out.println("Invalid input. Please enter valid integers.");
+        } finally {
+            // Close the scanner
+            scanner.close();
+        }
+    }
+
+    // Method to find the GCD of two numbers
+    public static int findGCD(int num1, int num2) {
+        // Use a loop to find the GCD
+        while (num2 != 0) {
+            int temp = num2;
+            num2 = num1 % num2;
+            num1 = temp;
+        }
+        return num1;
+    }
+}
+
+7. Write a Java program to implement binary search on an array of integers using loops and conditional statements.
+
+import java.util.Scanner;
+
+public class R192210454 {
+    public static void main(String[] args) {
+        // Example sorted array of integers
+        int[] numbers = {2, 3, 12, 22, 25, 64, 88};
+
+        // Create a Scanner object to read input from the user
+        Scanner scanner = new Scanner(System.in);
+
+        try {
+            // Prompt the user to enter the number to search for
+            System.out.print("Enter the number to search for: ");
+            if (scanner.hasNextInt()) {
+                int target = scanner.nextInt();
+
+                // Call the method to perform binary search
+                int result = binarySearch(numbers, target);
+
+                // Print the result
+                if (result == -1) {
+                    System.out.println(target + " is not present in the array.");
+                } else {
+                    System.out.println(target + " is present at index " + result + " in the array.");
+                }
+            } else {
+                System.out.println("Invalid input. Please enter a valid integer.");
+            }
+        } catch (Exception e) {
+            System.out.println("An error occurred: " + e.getMessage());
+        } finally {
+            // Close the scanner
+            scanner.close();
+        }
+    }
+
+    // Method to perform binary search on an array
+    public static int binarySearch(int[] array, int target) {
+        int left = 0;
+        int right = array.length - 1;
+
+        // Use a loop to perform binary search
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+
+            // Check if the target is present at mid
+            if (array[mid] == target) {
+                return mid;
+            }
+
+            // If target is greater, ignore the left half
+            if (array[mid] < target) {
+                left = mid + 1;
+            } else {
+                // If target is smaller, ignore the right half
+                right = mid - 1;
+            }
+        }
+
+        // If the target is not found, return -1
+        return -1;
+    }
+}
+
+
+4. Write a Java program to print the Fibonacci series up to a given number using loops.
+
+import java.util.Scanner;
+
+public class R192210454 {
+    public static void main(String[] args) {
+        // Create a Scanner object to read input from the user
+        Scanner scanner = new Scanner(System.in);
+
+        try {
+            // Prompt the user to enter the number of terms
+            System.out.print("Enter the number of terms in the Fibonacci series: ");
+            int n = scanner.nextInt();
+
+            // Print the Fibonacci series
+            printFibonacciSeries(n);
+        } catch (Exception e) {
+            System.out.println("Invalid input. Please enter a valid integer.");
+        } finally {
+            // Close the scanner
+            scanner.close();
+        }
+    }
+
+    // Method to print the Fibonacci series up to n terms
+    public static void printFibonacciSeries(int n) {
+        int firstTerm = 0;
+        int secondTerm = 1;
+
+        System.out.print("Fibonacci Series: " + firstTerm + " " + secondTerm);
+
+        // Use a loop to calculate the next terms
+        for (int i = 3; i <= n; i++) {
+            int nextTerm = firstTerm + secondTerm;
+            System.out.print(" " + nextTerm);
+            firstTerm = secondTerm;
+            secondTerm = nextTerm;
+        }
+    }
+}
+
+
+5. Write a Java program to calculate the factorial of a given number using loops.
+
+
+import java.util.Scanner;
+
+public class R192210454 {
+    public static void main(String[] args) {
+        // Create a Scanner object to read input from the user
+        Scanner scanner = new Scanner(System.in);
+
+        try {
+            // Prompt the user to enter a number
+            System.out.print("Enter a number: ");
+            int number = scanner.nextInt();
+
+            // Call the method to calculate the factorial
+            long factorial = calculateFactorial(number);
+
+            // Print the result
+            System.out.println("The factorial of " + number + " is: " + factorial);
+        } catch (Exception e) {
+            System.out.println("Invalid input. Please enter a valid integer.");
+        } finally {
+            // Close the scanner
+            scanner.close();
+        }
+    }
+
+    // Method to calculate the factorial of a given number using loops
+    public static long calculateFactorial(int number) {
+        long factorial = 1;
+
+        // Use a loop to calculate the factorial
+        for (int i = 1; i <= number; i++) {
+            factorial *= i;
+        }
+
+        return factorial;
+    }
+}
+
+
+
+
+
+1/2/25
+
+1. Library management system:
+
+interface LibraryItem {  // Remove the 'public' modifier
+    void borrowItem();
+    void returnItem();
+}
+
+class Book implements LibraryItem {
+    private boolean isBorrowed;
+
+    @Override
+    public void borrowItem() {
+        if (!isBorrowed) {
+            isBorrowed = true;
+            System.out.println("Book borrowed.");
+        } else {
+            System.out.println("Book is already borrowed.");
+        }
+    }
+
+    @Override
+    public void returnItem() {
+        if (isBorrowed) {
+            isBorrowed = false;
+            System.out.println("Book returned.");
+        } else {
+            System.out.println("Book was not borrowed.");
+        }
+    }
+}
+
+class Magazine implements LibraryItem {
+    private boolean isBorrowed;
+
+    @Override
+    public void borrowItem() {
+        if (!isBorrowed) {
+            isBorrowed = true;
+            System.out.println("Magazine borrowed.");
+        } else {
+            System.out.println("Magazine is already borrowed.");
+        }
+    }
+
+    @Override
+    public void returnItem() {
+        if (isBorrowed) {
+            isBorrowed = false;
+            System.out.println("Magazine returned.");
+        } else {
+            System.out.println("Magazine was not borrowed.");
+        }
+    }
+}
+
+class DVD implements LibraryItem {
+    private boolean isBorrowed;
+
+    @Override
+    public void borrowItem() {
+        if (!isBorrowed) {
+            isBorrowed = true;
+            System.out.println("DVD borrowed.");
+        } else {
+            System.out.println("DVD is already borrowed.");
+        }
+    }
+
+    @Override
+    public void returnItem() {
+        if (isBorrowed) {
+            isBorrowed = false;
+            System.out.println("DVD returned.");
+        } else {
+            System.out.println("DVD was not borrowed.");
+        }
+    }
+}
+
+public class LibraryManagement {
+    public static void main(String[] args) {
+        LibraryItem book = new Book();
+        LibraryItem magazine = new Magazine();
+        LibraryItem dvd = new DVD();
+
+        book.borrowItem();
+        magazine.borrowItem();
+        dvd.borrowItem();
+
+        book.returnItem();
+        magazine.returnItem();
+        dvd.returnItem();
+    }
+}
+
+
+2. multiple inheritance system:
+interface Printable {
+    void print();
+}
+
+interface Scannable {
+    void scan();
+}
+
+class MultifunctionPrinter implements Printable, Scannable {
+    @Override
+    public void print() {
+        System.out.println("Printing document...");
+    }
+
+    @Override
+    public void scan() {
+        System.out.println("Scanning document...");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        MultifunctionPrinter mfp = new MultifunctionPrinter();
+        mfp.print();
+        mfp.scan();
+    }
+}
+
+
+3.smart home automation:
+
+interface SmartDevice {
+    void turnOn();
+    void turnOff();
+}
+
+class Fan implements SmartDevice {
+    @Override
+    public void turnOn() {
+        System.out.println("Fan is turned on.");
+    }
+
+    @Override
+    public void turnOff() {
+        System.out.println("Fan is turned off.");
+    }
+}
+
+class Light implements SmartDevice {
+    @Override
+    public void turnOn() {
+        System.out.println("Light is turned on.");
+    }
+
+    @Override
+    public void turnOff() {
+        System.out.println("Light is turned off.");
+    }
+}
+
+class TV implements SmartDevice {
+    @Override
+    public void turnOn() {
+        System.out.println("TV is turned on.");
+    }
+
+    @Override
+    public void turnOff() {
+        System.out.println("TV is turned off.");
+    }
+}
+
+public class SmartHome {
+    public static void main(String[] args) {
+        SmartDevice fan = new Fan();
+        SmartDevice light = new Light();
+        SmartDevice tv = new TV();
+
+        fan.turnOn();
+        fan.turnOff();
+        light.turnOn();
+        light.turnOff();
+        tv.turnOn();
+        tv.turnOff();
+    }
+}
+
+
+4.payment gateway system:
+import java.util.Scanner;
+
+interface Payment {
+    void pay(double amount);
+}
+
+class CreditCardPayment implements Payment {
+    private String cardNumber;
+    private String cardHolderName;
+
+    public CreditCardPayment(String cardNumber, String cardHolderName) {
+        this.cardNumber = cardNumber;
+        this.cardHolderName = cardHolderName;
+    }
+
+    @Override
+    public void pay(double amount) {
+        System.out.println("Processing credit card payment of $" + amount + " for " + cardHolderName);
+        // Add logic to process credit card payment
+    }
+}
+
+class UpiPayment implements Payment {
+    private String upiId;
+
+    public UpiPayment(String upiId) {
+        this.upiId = upiId;
+    }
+
+    @Override
+    public void pay(double amount) {
+        System.out.println("Processing UPI payment of $" + amount + " to " + upiId);
+        // Add logic to process UPI payment
+    }
+}
+
+public class PaymentGateway {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Select payment method: 1. Credit Card 2. UPI");
+        int choice = scanner.nextInt();
+        System.out.print("Enter amount: ");
+        double amount = scanner.nextDouble();
+
+        Payment payment = null;
+
+        if (choice == 1) {
+            System.out.print("Enter card number: ");
+            String cardNumber = scanner.next();
+            System.out.print("Enter card holder name: ");
+            String cardHolderName = scanner.next();
+            payment = new CreditCardPayment(cardNumber, cardHolderName);
+        } else if (choice == 2) {
+            System.out.print("Enter UPI ID: ");
+            String upiId = scanner.next();
+            payment = new UpiPayment(upiId);
+        } else {
+            System.out.println("Invalid choice");
+            return;
+        }
+
+        payment.pay(amount);
+        scanner.close();
+    }
+}
+
+5.vehical rental system:
+interface Vehicle {
+    void rent();
+    void returnVehicle();
+}
+
+class Car implements Vehicle {
+    @Override
+    public void rent() {
+        System.out.println("Car rented.");
+    }
+
+    @Override
+    public void returnVehicle() {
+        System.out.println("Car returned.");
+    }
+}
+
+class Bike implements Vehicle {
+    @Override
+    public void rent() {
+        System.out.println("Bike rented.");
+    }
+
+    @Override
+    public void returnVehicle() {
+        System.out.println("Bike returned.");
+    }
+}
+
+class Truck implements Vehicle {
+    @Override
+    public void rent() {
+        System.out.println("Truck rented.");
+    }
+
+    @Override
+    public void returnVehicle() {
+        System.out.println("Truck returned.");
+    }
+}
+
+class VehicleRentalSystem {
+    public static void main(String[] args) {
+        Vehicle car = new Car();
+        Vehicle bike = new Bike();
+        Vehicle truck = new Truck();
+
+        car.rent();
+        bike.rent();
+        truck.rent();
+
+        car.returnVehicle();
+        bike.returnVehicle();
+        truck.returnVehicle();
+    }
+}
+
+6.bamking system:
+
+interface BankAccount {
+    double calculateInterest(double amount);
+}
+
+class SavingsAccount implements BankAccount {
+    private final double interestRate = 0.04; // 4% interest rate
+
+    @Override
+    public double calculateInterest(double amount) {
+        return amount * interestRate;
+    }
+}
+
+class CurrentAccount implements BankAccount {
+    private final double interestRate = 0.02; // 2% interest rate
+
+    @Override
+    public double calculateInterest(double amount) {
+        return amount * interestRate;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        BankAccount savings = new SavingsAccount();
+        BankAccount current = new CurrentAccount();
+
+        double savingsAmount = 1000.00;
+        double currentAmount = 1000.00;
+
+        System.out.println("Interest for Savings Account: " + savings.calculateInterest(savingsAmount));
+        System.out.println("Interest for Current Account: " + current.calculateInterest(currentAmount));
+    }
+}
+
+7.notification interface:
+// Notification Interface
+interface Notification {
+    void sendNotification(String message);
+}
+
+// Email Notification Class
+class EmailNotification implements Notification {
+    @Override
+    public void sendNotification(String message) {
+        System.out.println("Email Notification: " + message);
+    }
+}
+
+// SMS Notification Class
+class SMSNotification implements Notification {
+    @Override
+    public void sendNotification(String message) {
+        System.out.println("SMS Notification: " + message);
+    }
+}
+
+// Push Notification Class
+class PushNotification implements Notification {
+    @Override
+    public void sendNotification(String message) {
+        System.out.println("Push Notification: " + message);
+    }
+}
+
+// Main Class to Demonstrate Notifications
+public class NotificationDemo {
+    public static void main(String[] args) {
+        Notification email = new EmailNotification();
+        Notification sms = new SMSNotification();
+        Notification push = new PushNotification();
+
+        email.sendNotification("Hello via Email!");
+        sms.sendNotification("Hello via SMS!");
+        push.sendNotification("Hello via Push Notification!");
+    }
+}
+
+8.Shopping cart system:
+import java.util.ArrayList;
+import java.util.List;
+
+interface Product {
+    double getPrice();
+    String getDetails();
+}
+
+class Electronics implements Product {
+    private double price;
+    private String details;
+
+    public Electronics(double price, String details) {
+        this.price = price;
+        this.details = details;
+    }
+
+    @Override
+    public double getPrice() {
+        return price;
+    }
+
+    @Override
+    public String getDetails() {
+        return details;
+    }
+}
+
+class Clothing implements Product {
+    private double price;
+    private String details;
+
+    public Clothing(double price, String details) {
+        this.price = price;
+        this.details = details;
+    }
+
+    @Override
+    public double getPrice() {
+        return price;
+    }
+
+    @Override
+    public String getDetails() {
+        return details;
+    }
+}
+
+class Grocery implements Product {
+    private double price;
+    private String details;
+
+    public Grocery(double price, String details) {
+        this.price = price;
+        this.details = details;
+    }
+
+    @Override
+    public double getPrice() {
+        return price;
+    }
+
+    @Override
+    public String getDetails() {
+        return details;
+    }
+}
+
+public class ShoppingCart {
+    private List<Product> items = new ArrayList<>();
+
+    public void addItem(Product product) {
+        items.add(product);
+    }
+
+    public double calculateTotal() {
+        double total = 0;
+        for (Product product : items) {
+            total += product.getPrice();
+        }
+        return total;
+    }
+
+    public static void main(String[] args) {
+        ShoppingCart cart = new ShoppingCart();
+        cart.addItem(new Electronics(299.99, "Smartphone"));
+        cart.addItem(new Clothing(49.99, "T-Shirt"));
+        cart.addItem(new Grocery(3.99, "Milk"));
+
+        System.out.println("Total Bill: $" + cart.calculateTotal());
+    }
+}
+
+9.employee payroll system:
+
+# Payable Interface and Employee Salary Calculation
+
+interface Payable {
+    double calculateSalary();
+}
+
+class FullTimeEmployee implements Payable {
+    private double monthlySalary;
+
+    public FullTimeEmployee(double monthlySalary) {
+        this.monthlySalary = monthlySalary;
+    }
+
+    @Override
+    public double calculateSalary() {
+        return monthlySalary;
+    }
+}
+
+class PartTimeEmployee implements Payable {
+    private double hourlyRate;
+    private int hoursWorked;
+
+    public PartTimeEmployee(double hourlyRate, int hoursWorked) {
+        this.hourlyRate = hourlyRate;
+        this.hoursWorked = hoursWorked;
+    }
+
+    @Override
+    public double calculateSalary() {
+        return hourlyRate * hoursWorked;
+    }
+}
+
+public class EmployeeSalaryCalculator {
+    public static void main(String[] args) {
+        Payable fullTimeEmployee = new FullTimeEmployee(3000);
+        Payable partTimeEmployee = new PartTimeEmployee(20, 80);
+
+        System.out.println("Full-Time Employee Salary: $" + fullTimeEmployee.calculateSalary());
+        System.out.println("Part-Time Employee Salary: $" + partTimeEmployee.calculateSalary());
+    }
+}
+
+10.airline reservation system:
+# Flight Reservation System
+
+interface Flight {
+    void bookTicket();
+    void cancelTicket();
+}
+
+class DomesticFlight implements Flight {
+    @Override
+    public void bookTicket() {
+        System.out.println("Booking ticket for Domestic Flight.");
+    }
+
+    @Override
+    public void cancelTicket() {
+        System.out.println("Cancelling ticket for Domestic Flight.");
+    }
+}
+
+class InternationalFlight implements Flight {
+    @Override
+    public void bookTicket() {
+        System.out.println("Booking ticket for International Flight.");
+    }
+
+    @Override
+    public void cancelTicket() {
+        System.out.println("Cancelling ticket for International Flight.");
+    }
+}
+
+public class FlightReservation {
+    public static void main(String[] args) {
+        Flight domesticFlight = new DomesticFlight();
+        domesticFlight.bookTicket();
+        domesticFlight.cancelTicket();
+
+        Flight internationalFlight = new InternationalFlight();
+        internationalFlight.bookTicket();
+        internationalFlight.cancelTicket();
+    }
+}
+
+
